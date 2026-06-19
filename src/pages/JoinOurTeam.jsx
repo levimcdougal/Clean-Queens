@@ -71,7 +71,7 @@ export default function JoinOurTeam() {
           </FadeIn>
           <FadeIn delay={250}>
             <span className="inline-block px-10 py-4 bg-[#5BC85A] text-white rounded-md text-lg font-semibold shadow-lg">
-              Call or Text 936-581-7119
+              Call or Text — Toll Free: 844-CLN-QNZ1 · Local: 936-581-7119
             </span>
           </FadeIn>
         </div>
@@ -140,8 +140,11 @@ export default function JoinOurTeam() {
                     <span className="text-2xl">📱</span>
                     <div>
                       <p className="font-semibold text-[#1E5DB8]">Call or Text</p>
-                      <a className="text-gray-700 hover:text-[#1E5DB8] transition-colors font-medium" href="tel:9365817119">
-                        936-581-7119
+                      <a className="block text-gray-700 hover:text-[#1E5DB8] transition-colors font-medium" href="tel:8442567691">
+                        Toll Free: 844-CLN-QNZ1
+                      </a>
+                      <a className="block text-gray-700 hover:text-[#1E5DB8] transition-colors font-medium" href="tel:9365817119">
+                        Local: 936-581-7119
                       </a>
                     </div>
                   </div>

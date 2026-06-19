@@ -18,8 +18,11 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
           <div className="text-center">
             <p className="text-white text-base font-semibold leading-none">Call or Text Us</p>
-            <a className="text-2xl font-bold text-white hover:text-white/80 transition-colors" href="tel:9365817119">
-              936-581-7119
+            <a className="block text-lg font-bold text-white hover:text-white/80 transition-colors" href="tel:8442567691">
+              Toll Free: 844-CLN-QNZ1
+            </a>
+            <a className="block text-lg font-bold text-white hover:text-white/80 transition-colors" href="tel:9365817119">
+              Local: 936-581-7119
             </a>
           </div>
           <div className="hidden sm:block w-px h-10 bg-white/30" />
