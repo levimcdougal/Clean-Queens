@@ -2,6 +2,7 @@ import FadeIn from '../components/FadeIn'
 import ceo from '../assets/ceo.jpg'
 import president from '../assets/president.jpg'
 import vicepresident from '../assets/vicepresident.jpg'
+import jessica from '../assets/jessica.jpg'
 
 const team = [
   {
@@ -24,6 +25,13 @@ const team = [
     role: 'Vice President',
     bio: 'Jasmine Holloway started with Clean Queens in February 2026. She began as a Cleaning Specialist, and excelled at detailed cleaning and training new staff. In June 2026, she was promoted to Vice President where she will direct business operations for Clean Queens.',
     reverse: false,
+  },
+  {
+    image: jessica,
+    name: 'Jessica Cooke',
+    role: 'District Manager — Houston',
+    bio: "Jessica Cooke joined Clean Queens in June 2026 as District Manager for the greater Houston area. She previously worked in healthcare, so she knows the importance of cleanliness. Her experience in customer service and cleanliness makes her an asset in her current role. She will direct business operations in our Great State of Texas' largest metropolitan region.",
+    reverse: true,
   },
 ]
 
