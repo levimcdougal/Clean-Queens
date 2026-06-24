@@ -53,7 +53,7 @@ export default function Home() {
                 </h2>
                 <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
                   <p>
-                    At Clean Queens, we believe a clean home or business is something everyone in our community deserves. Proudly serving Huntsville / Walker County, Houston, and Tyler, Texas, and the surrounding areas, we're your neighbors, and we treat every space we clean with the same care we'd give our own.
+                    At Clean Queens, we believe a clean home or business is something everyone in our community deserves. Proudly serving Huntsville / Walker County and Houston, Texas, and the surrounding areas — and currently working to expand into other cities across the great state of Texas — we're your neighbors, and we treat every space we clean with the same care we'd give our own.
                   </p>
                   <p>
                     We use eco-friendly products that are safe for your kids, your pets, and the planet. Whether it's your living room or your office, we show up consistently and leave things genuinely clean, not just surface-level tidy.
