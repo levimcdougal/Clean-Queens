@@ -1,8 +1,24 @@
+import { useState } from 'react'
 import CalEmbed from '../components/CalEmbed'
 import venmo from '../assets/venmo.png'
 import cashapp from '../assets/cashapp.png'
 import paypal from '../assets/paypal.png'
 import stripe from '../assets/stripe.png'
+
+const locations = [
+  {
+    id: 'huntsville',
+    label: 'Huntsville / Walker County',
+    calLink: 'cleanqueens/in-person-consultation-estimate',
+    namespace: 'in-person-consultation-estimate',
+  },
+  {
+    id: 'houston',
+    label: 'Houston',
+    calLink: 'clean-queens/30min',
+    namespace: 'houston-30min',
+  },
+]
 
 const faqs = [
   {
@@ -36,6 +52,9 @@ const faqs = [
 ]
 
 export default function Booking() {
+  const [locationId, setLocationId] = useState('huntsville')
+  const location = locations.find(l => l.id === locationId)
+
   return (
     <div className="w-full">
       <section className="bg-gradient-to-br from-[#1E5DB8] to-[#1a4da0] text-white py-12">
@@ -58,9 +77,34 @@ export default function Booking() {
         </div>
       </section>
 
+      <section className="bg-white pt-10 pb-0">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl font-bold text-[#1E5DB8] mb-2">Select Your Service Area</h2>
+          <p className="text-gray-600 mb-6">Choose your location to see available booking times.</p>
+          <div className="inline-flex bg-[#E3F2FD] rounded-full p-1 gap-1">
+            {locations.map(({ id, label }) => (
+              <button
+                key={id}
+                onClick={() => setLocationId(id)}
+                className={
+                  id === locationId
+                    ? 'px-6 py-2 rounded-full text-sm font-semibold transition-colors bg-[#1E5DB8] text-white'
+                    : 'px-6 py-2 rounded-full text-sm font-semibold transition-colors text-[#1E5DB8] hover:bg-white/60'
+                }
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white py-8">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <CalEmbed />
+          <p className="text-center text-gray-600 mb-4">
+            Now booking for <span className="font-semibold text-[#1E5DB8]">{location.label}</span>
+          </p>
+          <CalEmbed key={location.id} calLink={location.calLink} namespace={location.namespace} />
         </div>
       </section>
 

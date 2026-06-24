@@ -1,8 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-const NAMESPACE = 'in-person-consultation-estimate'
-
-export default function CalEmbed() {
+export default function CalEmbed({ calLink, namespace, layout = 'month_view' }) {
   const ref = useRef(null)
 
   useEffect(() => {
@@ -19,12 +17,12 @@ export default function CalEmbed() {
         }
         if (ar[0] === L) {
           const api = function (...apiAr) { p(api, apiAr) }
-          const namespace = ar[1]
+          const ns = ar[1]
           api.q = api.q || []
-          if (typeof namespace === 'string') {
-            cal.ns[namespace] = cal.ns[namespace] || api
-            p(cal.ns[namespace], ar)
-            p(cal, ['initNamespace', namespace])
+          if (typeof ns === 'string') {
+            cal.ns[ns] = cal.ns[ns] || api
+            p(cal.ns[ns], ar)
+            p(cal, ['initNamespace', ns])
           } else {
             p(cal, ar)
           }
@@ -34,20 +32,20 @@ export default function CalEmbed() {
       }
     })(window, 'https://app.cal.com/embed/embed.js', 'init')
 
-    window.Cal('init', NAMESPACE, { origin: 'https://cal.com' })
+    window.Cal('init', namespace, { origin: 'https://cal.com' })
 
-    window.Cal.ns[NAMESPACE]('inline', {
+    window.Cal.ns[namespace]('inline', {
       elementOrSelector: ref.current,
-      config: { layout: 'month_view' },
-      calLink: 'cleanqueens/in-person-consultation-estimate',
+      config: { layout },
+      calLink,
     })
 
-    window.Cal.ns[NAMESPACE]('ui', {
+    window.Cal.ns[namespace]('ui', {
       cssVarsPerTheme: { light: { 'cal-brand': '#1e5db8' }, dark: { 'cal-brand': '#1e5db8' } },
       hideEventTypeDetails: false,
-      layout: 'month_view',
+      layout,
     })
-  }, [])
+  }, [calLink, namespace, layout])
 
   return <div ref={ref} style={{ width: '100%', minHeight: 800, overflow: 'visible' }} />
 }
