@@ -47,7 +47,8 @@ const services = [
     image: subscription,
     title: 'Subscription Clean Plan',
     desc: 'Pay a flat monthly rate and choose your cleaning schedule — weekly, bi-weekly, or monthly. Like a car wash membership, but for your home.',
-    extraClass: 'lg:col-start-2',
+    extraClass: 'md:col-span-2 md:flex md:justify-center lg:flex lg:col-span-1 lg:col-start-2',
+    cardClass: 'md:max-w-[calc(50%-1rem)] lg:max-w-none',
   },
 ]
 
@@ -70,9 +71,9 @@ export default function Services() {
       <section className="pt-12 pb-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
-            {services.map(({ image, title, desc, extraClass }, i) => (
+            {services.map(({ image, title, desc, extraClass, cardClass = '' }, i) => (
               <FadeIn key={title} delay={(i % 3) * 100} className={extraClass}>
-                <div className="bg-white border-2 border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow text-center flex flex-col">
+                <div className={`bg-white border-2 border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow text-center flex flex-col w-full ${cardClass}`}>
                   <div className="mb-6 flex justify-center items-center h-[200px]">
                     <img alt={title} className="w-auto h-full max-w-[300px] object-contain" src={image} />
                   </div>
