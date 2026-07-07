@@ -1,7 +1,6 @@
 import FadeIn from '../components/FadeIn'
 import ceo from '../assets/ceo.jpg'
 import president from '../assets/president.jpg'
-import jessica from '../assets/jessica.jpg'
 
 const team = [
   {
@@ -17,13 +16,6 @@ const team = [
     role: 'President',
     bio: 'Jennifer Holloway joined Clean Queens in November 2025. She began as a top performing Cleaning Specialist. She performed so well in that role — training other cleaners and providing exceptional customer service — that in June 2026 she was promoted to President of the company.',
     reverse: true,
-  },
-  {
-    image: jessica,
-    name: 'Jessica Cooke',
-    role: 'Vice President',
-    bio: "Jessica started with Clean Queens in June 2026. With previous experience in the medical profession requiring sanitary conditions and customer service skills, she was appointed to Vice President. In this role, she directs business operations for Clean Queens.",
-    reverse: false,
   },
 ]
 
