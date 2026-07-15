@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import FadeIn from '../components/FadeIn'
 import deepClean from '../assets/service-deep-clean.png'
@@ -17,42 +18,55 @@ const services = [
     image: deepClean,
     title: 'Deep Clean',
     desc: 'A deep clean of an occupied home or business, for first time customers.',
+    details: 'Our most detailed top-to-bottom cleaning covers the areas that need extra attention, including buildup, baseboards, fixtures, cabinet exteriors, and other commonly missed surfaces. It creates a fresh starting point before recurring service begins.',
   },
   {
     image: weekly,
     title: 'Weekly',
     desc: 'A routine clean of your home or business, scheduled weekly.',
+    details: 'Weekly service keeps dust, floors, kitchens, bathrooms, and high-use areas consistently clean. It is a great fit for busy households, families with pets, and businesses that need dependable upkeep.',
   },
   {
     image: biweekly,
     title: 'Bi-Weekly',
     desc: 'A routine clean of your home or business, scheduled once every 2 weeks.',
+    details: 'Our most popular recurring schedule provides a thorough routine cleaning every other week. We maintain the essential areas of your space so dirt and clutter do not have time to build up.',
   },
   {
     image: monthly,
     title: 'Monthly',
     desc: 'A routine clean of your home or business, scheduled once per month.',
+    details: 'Monthly service gives your home or business a regular refresh with focused attention on kitchens, bathrooms, floors, dusting, and general surfaces. It works well for lower-traffic spaces that still need professional care.',
   },
   {
     image: moveOut,
     title: 'Move Out Clean',
     desc: 'A thorough clean of an unoccupied home after a tenant moves out, leaving the space spotless for the next occupant or for listing.',
+    details: 'We clean the empty space from top to bottom, paying special attention to kitchens, bathrooms, floors, baseboards, cabinets, and the areas normally hidden by furniture. The result is a clean, welcoming property ready for its next chapter.',
   },
   {
     image: postConstruction,
     title: 'Post Construction / Move In Clean',
     desc: 'A deep clean for spaces after a remodel or new build, removing construction dust and debris so the space is move-in ready.',
+    details: 'This detailed service removes fine construction dust and residue from accessible surfaces, fixtures, trim, cabinets, and floors. It is also ideal before moving in, giving you a fresh and professionally cleaned space to settle into.',
   },
   {
     image: subscription,
     title: 'Subscription Clean Plan',
     desc: 'Pay a flat monthly rate and choose your cleaning schedule — weekly, bi-weekly, or monthly. Like a car wash membership, but for your home.',
+    details: 'Choose the recurring frequency that fits your household and enjoy predictable monthly billing. Your plan makes it simple to keep professional cleaning on the calendar without booking every visit separately.',
     extraClass: 'md:col-span-2 md:flex md:justify-center lg:flex lg:col-span-1 lg:col-start-2',
     cardClass: 'md:max-w-[calc(50%-1rem)] lg:max-w-none',
   },
 ]
 
 export default function Services() {
+  const [expandedService, setExpandedService] = useState(null)
+
+  const toggleService = (title) => {
+    setExpandedService((current) => (current === title ? null : title))
+  }
+
   return (
     <div className="w-full">
       <section className="bg-gradient-to-br from-[#1E5DB8] to-[#1a4da0] text-white py-12">
@@ -71,7 +85,11 @@ export default function Services() {
       <section className="pt-12 pb-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
-            {services.map(({ image, title, desc, extraClass, cardClass = '' }, i) => (
+            {services.map(({ image, title, desc, details, extraClass, cardClass = '' }, i) => {
+              const isExpanded = expandedService === title
+              const detailsId = `service-details-${i}`
+
+              return (
               <FadeIn key={title} delay={(i % 3) * 100} className={extraClass}>
                 <div className={`bg-white border-2 border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow text-center flex flex-col w-full ${cardClass}`}>
                   <div className="mb-6 flex justify-center items-center h-[200px]">
@@ -79,14 +97,26 @@ export default function Services() {
                   </div>
                   <h3 className="text-2xl font-semibold mb-3 text-[#1E5DB8]">{title}</h3>
                   <p className="text-gray-600 mb-4 min-h-[60px]">{desc}</p>
+                  {isExpanded && (
+                    <p id={detailsId} className="text-gray-600 mb-5 text-left leading-relaxed">
+                      {details}
+                    </p>
+                  )}
                   <div className="mt-auto">
-                    <button className="px-5 py-2 bg-[#1E5DB8] text-white rounded-full text-sm font-semibold hover:bg-[#1a4da0] transition-colors">
-                      Learn More
+                    <button
+                      type="button"
+                      aria-expanded={isExpanded}
+                      aria-controls={detailsId}
+                      onClick={() => toggleService(title)}
+                      className="px-5 py-2 bg-[#1E5DB8] text-white rounded-full text-sm font-semibold hover:bg-[#1a4da0] transition-colors"
+                    >
+                      {isExpanded ? 'Show Less' : 'Learn More'}
                     </button>
                   </div>
                 </div>
               </FadeIn>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
