@@ -57,7 +57,7 @@ const requirements = [
 export default function JoinOurTeam() {
   return (
     <div className="w-full">
-      <section className="bg-gradient-to-br from-[#1E5DB8] to-[#1a4da0] text-white py-16 sm:py-24">
+      <section className="royal-hero bg-gradient-to-br from-[#1E5DB8] to-[#1a4da0] text-white py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeIn>
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-5 leading-tight">
@@ -77,7 +77,7 @@ export default function JoinOurTeam() {
         </div>
       </section>
 
-      <section className="py-12 lg:py-20 bg-white">
+      <section className="color-wash-blue py-12 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#1E5DB8] text-center mb-4">
@@ -87,11 +87,11 @@ export default function JoinOurTeam() {
               We take care of our people — because when our team feels valued, that shows in everything they do.
             </p>
           </FadeIn>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="color-card-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {perks.map(({ image, imgClass, title, desc }, i) => (
               <FadeIn key={title} delay={i * 80}>
                 <div className="bg-[#E3F2FD] rounded-xl px-6 pt-3 pb-5 flex flex-col gap-0 h-full shadow-sm hover:shadow-md transition-shadow">
-                  <img alt={title} className={`${imgClass} object-contain mb-1`} src={image} />
+                  <img alt={title} className={`${imgClass} object-contain mb-1`} decoding="async" loading="lazy" src={image} />
                   <h3 className="text-xl font-bold text-[#1E5DB8] mb-1">{title}</h3>
                   <p className="text-gray-700 leading-relaxed">{desc}</p>
                 </div>
@@ -129,7 +129,7 @@ export default function JoinOurTeam() {
             <FadeIn delay={150}>
               <div className="bg-white rounded-2xl p-8 shadow-xl">
                 <div className="text-center mb-6">
-                  <img alt="Crown" className="w-24 h-auto object-contain mx-auto" src={iconCrown} />
+                  <img alt="Crown" className="w-24 h-auto object-contain mx-auto" decoding="async" loading="lazy" src={iconCrown} />
                   <h3 className="text-2xl font-bold text-[#1E5DB8] mt-3">Ready to Wear the Crown?</h3>
                   <p className="text-gray-600 mt-2">
                     We're a small local team and every person matters here. Come grow with us.

@@ -1,6 +1,6 @@
 import FadeIn from '../components/FadeIn'
-import ceo from '../assets/ceo.jpg'
-import president from '../assets/president.jpg'
+import ceo from '../assets/opt-ceo.jpg'
+import president from '../assets/opt-president.jpg'
 
 const team = [
   {
@@ -22,7 +22,7 @@ const team = [
 export default function AboutUs() {
   return (
     <div className="w-full">
-      <section className="py-14 bg-gradient-to-br from-[#1E5DB8] to-[#1a4da0] text-white text-center px-4">
+      <section className="royal-hero py-16 bg-gradient-to-br from-[#1E5DB8] to-[#1a4da0] text-white text-center px-4">
         <FadeIn>
           <h1 className="text-3xl sm:text-5xl font-bold mb-4">Meet the Clean Queens Team</h1>
           <p className="text-lg sm:text-xl text-white/85 max-w-2xl mx-auto">
@@ -31,7 +31,7 @@ export default function AboutUs() {
         </FadeIn>
       </section>
 
-      <section className="py-14 bg-white">
+      <section className="color-wash-blue py-14 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-16">
           {team.map(({ image, name, role, bio, reverse }, i) => (
             <FadeIn key={name} delay={i * 100}>
@@ -39,7 +39,9 @@ export default function AboutUs() {
                 <div className="w-full max-w-sm mx-auto lg:max-w-none lg:w-2/5 lg:mx-0 flex-shrink-0">
                   <img
                     alt={name}
-                    className="w-full aspect-[4/5] lg:aspect-auto lg:max-h-[420px] object-cover object-top rounded-2xl shadow-xl"
+                    className="royal-frame w-full aspect-[4/5] lg:aspect-auto lg:max-h-[420px] object-cover object-top rounded-2xl"
+                    decoding="async"
+                    loading="lazy"
                     src={image}
                   />
                 </div>

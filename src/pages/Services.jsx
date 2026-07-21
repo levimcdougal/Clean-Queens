@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import FadeIn from '../components/FadeIn'
-import deepClean from '../assets/service-deep-clean.png'
+import deepClean from '../assets/opt-service-deep-clean.jpg'
 import weekly from '../assets/service-weekly.png'
 import biweekly from '../assets/service-biweekly.png'
 import monthly from '../assets/service-monthly.png'
-import moveOut from '../assets/service-moveout.png'
-import postConstruction from '../assets/service-postconstruction.png'
-import subscription from '../assets/service-subscription.png'
+import moveOut from '../assets/opt-service-moveout.jpg'
+import postConstruction from '../assets/opt-service-postconstruction.jpg'
+import subscription from '../assets/opt-service-subscription.jpg'
+import carpetCleaning from '../assets/opt-car.jpg'
 import venmo from '../assets/venmo.png'
 import cashapp from '../assets/cashapp.png'
 import paypal from '../assets/paypal.png'
@@ -51,12 +52,16 @@ const services = [
     details: 'This detailed service removes fine construction dust and residue from accessible surfaces, fixtures, trim, cabinets, and floors. It is also ideal before moving in, giving you a fresh and professionally cleaned space to settle into.',
   },
   {
+    image: carpetCleaning,
+    title: 'Carpet Cleaning',
+    desc: 'Professional carpet cleaning that lifts dirt, stains, and odors to leave your carpets looking and feeling refreshed.',
+    details: 'Our carpet cleaning service targets embedded dirt, everyday stains, and lingering odors to restore a cleaner, fresher feel. It is a great addition to a full-home clean or a simple way to refresh high-traffic areas.',
+  },
+  {
     image: subscription,
     title: 'Subscription Clean Plan',
     desc: 'Pay a flat monthly rate and choose your cleaning schedule — weekly, bi-weekly, or monthly. Like a car wash membership, but for your home.',
     details: 'Choose the recurring frequency that fits your household and enjoy predictable monthly billing. Your plan makes it simple to keep professional cleaning on the calendar without booking every visit separately.',
-    extraClass: 'md:col-span-2 md:flex md:justify-center lg:flex lg:col-span-1 lg:col-start-2',
-    cardClass: 'md:max-w-[calc(50%-1rem)] lg:max-w-none',
   },
 ]
 
@@ -69,7 +74,7 @@ export default function Services() {
 
   return (
     <div className="w-full">
-      <section className="bg-gradient-to-br from-[#1E5DB8] to-[#1a4da0] text-white py-12">
+      <section className="royal-hero bg-gradient-to-br from-[#1E5DB8] to-[#1a4da0] text-white py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center">
@@ -82,18 +87,19 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="pt-12 pb-12 bg-white">
+      <section className="color-wash-blue pt-12 pb-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+          <div className="color-card-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 items-stretch">
             {services.map(({ image, title, desc, details, extraClass, cardClass = '' }, i) => {
               const isExpanded = expandedService === title
               const detailsId = `service-details-${i}`
+              const centeredFinalRow = i === 6 ? 'lg:col-start-2' : i === 7 ? 'lg:col-start-4' : ''
 
               return (
-              <FadeIn key={title} delay={(i % 3) * 100} className={extraClass}>
-                <div className={`bg-white border-2 border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow text-center flex flex-col w-full ${cardClass}`}>
+              <FadeIn key={title} delay={(i % 3) * 100} className={`h-full lg:col-span-2 ${centeredFinalRow} ${extraClass || ''}`}>
+                <div className={`bg-white border-2 border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow text-center flex flex-col w-full h-full ${cardClass}`}>
                   <div className="mb-6 flex justify-center items-center h-[200px]">
-                    <img alt={title} className="w-auto h-full max-w-[300px] object-contain" src={image} />
+                    <img alt={title} className="w-auto h-full max-w-[300px] object-contain" decoding="async" loading="lazy" src={image} />
                   </div>
                   <h3 className="text-2xl font-semibold mb-3 text-[#1E5DB8]">{title}</h3>
                   <p className="text-gray-600 mb-4 min-h-[60px]">{desc}</p>
@@ -126,10 +132,10 @@ export default function Services() {
           <hr className="border-t border-gray-200 mb-10" />
           <h2 className="text-2xl font-bold text-[#1E5DB8] mb-8">Accepted Forms of Payment</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 justify-center items-center justify-items-center">
-            <img alt="Venmo" className="h-24 object-contain" src={venmo} />
-            <img alt="Cash App" className="h-24 object-contain" src={cashapp} />
-            <img alt="PayPal" className="h-20 object-contain" src={paypal} />
-            <img alt="Stripe" className="h-20 object-contain" src={stripe} />
+            <img alt="Venmo" className="h-24 object-contain" decoding="async" loading="lazy" src={venmo} />
+            <img alt="Cash App" className="h-24 object-contain" decoding="async" loading="lazy" src={cashapp} />
+            <img alt="PayPal" className="h-20 object-contain" decoding="async" loading="lazy" src={paypal} />
+            <img alt="Stripe" className="h-20 object-contain" decoding="async" loading="lazy" src={stripe} />
           </div>
         </div>
       </section>

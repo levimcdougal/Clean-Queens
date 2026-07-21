@@ -1,23 +1,25 @@
 import { Link } from 'react-router-dom'
 import FadeIn from '../components/FadeIn'
-import heroBg from '../assets/hero-bg.png'
-import cleanerPhoto from '../assets/cleaner-photo.png'
+import heroBg from '../assets/opt-hero-bg.jpg'
+import cleanerPhoto from '../assets/opt-cleaner-photo.jpg'
 import house1 from '../assets/house1.jpg'
 import house2 from '../assets/house2.jpg'
 import house3 from '../assets/house3.jpg'
 import house4 from '../assets/house4.jpg'
-import cleaningSupplies from '../assets/cleaning-supplies.png'
+import cleaningSupplies from '../assets/opt-cleaning-supplies.jpg'
 
 export default function Home() {
   return (
     <div className="w-full">
-      <section className="relative h-[420px] sm:h-[600px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[420px] sm:h-[600px] flex items-center justify-center overflow-hidden border-b-[8px] border-[#5BC85A]">
         <img
           alt="Professional cleaning team"
           className="absolute inset-0 w-full h-full object-cover object-[center_65%]"
+          decoding="async"
+          fetchPriority="high"
           src={heroBg}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#052c78]/75 via-black/25 to-[#D946A6]/45" />
         <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
           <FadeIn>
             <h1 className="text-2xl sm:text-4xl lg:text-7xl font-bold text-white mb-5 sm:mb-8 leading-tight">
@@ -28,13 +30,13 @@ export default function Home() {
             <div className="flex gap-4 justify-center flex-wrap">
               <Link
                 to="/booking"
-                className="px-7 sm:px-10 py-3 sm:py-4 bg-[#1E5DB8] text-white rounded-md hover:bg-[#1a4d99] transition-colors text-base sm:text-lg font-semibold shadow-lg"
+                className="royal-button px-7 sm:px-10 py-3 sm:py-4 text-white rounded-full transition-transform hover:scale-105 text-base sm:text-lg font-semibold"
               >
                 Book Your Service Now
               </Link>
               <Link
                 to="/services"
-                className="px-7 sm:px-10 py-3 sm:py-4 bg-[#5BC85A] text-white rounded-md hover:bg-[#4ab449] transition-colors text-base sm:text-lg font-semibold shadow-lg"
+                className="px-7 sm:px-10 py-3 sm:py-4 bg-[#5BC85A] text-white rounded-full hover:bg-[#32a842] transition-transform hover:scale-105 text-base sm:text-lg font-semibold shadow-xl border-2 border-white/70"
               >
                 Explore Our Cleaning Services
               </Link>
@@ -43,7 +45,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-10 lg:py-20 bg-white">
+      <section className="color-wash-blue py-10 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <FadeIn>
@@ -68,7 +70,9 @@ export default function Home() {
               <div className="relative flex justify-center">
                 <img
                   alt="Professional cleaner"
-                  className="max-w-full h-auto max-h-[500px] rounded-lg shadow-2xl"
+                  className="royal-frame max-w-full h-auto max-h-[500px] rounded-2xl"
+                  decoding="async"
+                  loading="lazy"
                   src={cleanerPhoto}
                 />
               </div>
@@ -77,7 +81,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-10 lg:py-20 bg-[#E3F2FD]">
+      <section className="color-wash-pink py-10 lg:py-20 bg-[#E3F2FD]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#1E5DB8] text-center mb-10 lg:mb-16">
@@ -87,10 +91,10 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <FadeIn>
               <div className="grid grid-cols-2 gap-3">
-                <img alt="Clean home" className="w-full h-32 sm:h-48 object-cover rounded-lg shadow-lg" src={house1} />
-                <img alt="Clean home" className="w-full h-32 sm:h-48 object-cover rounded-lg shadow-lg" src={house2} />
-                <img alt="Clean home" className="w-full h-32 sm:h-48 object-cover rounded-lg shadow-lg" src={house3} />
-                <img alt="Clean home" className="w-full h-32 sm:h-48 object-cover rounded-lg shadow-lg" src={house4} />
+                <img alt="Clean home" className="w-full h-32 sm:h-48 object-cover rounded-lg shadow-lg" decoding="async" loading="lazy" src={house1} />
+                <img alt="Clean home" className="w-full h-32 sm:h-48 object-cover rounded-lg shadow-lg" decoding="async" loading="lazy" src={house2} />
+                <img alt="Clean home" className="w-full h-32 sm:h-48 object-cover rounded-lg shadow-lg" decoding="async" loading="lazy" src={house3} />
+                <img alt="Clean home" className="w-full h-32 sm:h-48 object-cover rounded-lg shadow-lg" decoding="async" loading="lazy" src={house4} />
               </div>
             </FadeIn>
             <FadeIn delay={150}>
@@ -110,7 +114,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-10 lg:py-20 bg-white">
+      <section className="color-wash-blue py-10 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#1E5DB8] text-center mb-10 lg:mb-16">
@@ -135,7 +139,9 @@ export default function Home() {
               <div className="relative">
                 <img
                   alt="Professional cleaning supplies"
-                  className="w-full h-auto object-cover rounded-lg shadow-2xl"
+                  className="royal-frame w-full h-auto object-cover rounded-2xl"
+                  decoding="async"
+                  loading="lazy"
                   src={cleaningSupplies}
                 />
               </div>

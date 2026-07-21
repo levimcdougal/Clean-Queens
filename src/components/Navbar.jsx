@@ -6,6 +6,7 @@ const links = [
   { to: '/', label: 'Home', color: '#1E5DB8' },
   { to: '/services', label: 'Services', color: '#5BC85A' },
   { to: '/about-us', label: 'About Us', color: '#1E5DB8' },
+  { to: '/gallery', label: 'Gallery', color: '#5BC85A' },
   { to: '/join-our-team', label: 'Join Our Team', color: '#D946A6' },
 ]
 
@@ -14,21 +15,22 @@ export default function Navbar() {
   const { pathname } = useLocation()
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50">
+    <nav className="bg-white/95 shadow-lg sticky top-0 z-50 backdrop-blur-md border-b border-[#1E5DB8]/10">
+      <div className="brand-ribbon" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center">
             <img alt="Clean Queens Logo" className="h-16 w-auto" src={logo} />
           </Link>
 
-          <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center gap-8">
+          <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center gap-5 lg:gap-8">
             {links.map(({ to, label, color }) => {
               const active = pathname === to
               return (
                 <Link
                   key={to}
                   to={to}
-                  className="transition-colors font-medium"
+                  className={`transition-all font-bold rounded-full px-3 py-2 ${active ? 'bg-[#EAF4FF] shadow-sm' : 'hover:bg-gray-50'}`}
                   style={{ color: active ? color : '#374151' }}
                   onMouseEnter={e => { if (!active) e.currentTarget.style.color = color }}
                   onMouseLeave={e => { if (!active) e.currentTarget.style.color = '#374151' }}
@@ -47,8 +49,8 @@ export default function Navbar() {
               to="/booking"
               className={
                 pathname === '/booking'
-                  ? 'px-5 py-2 bg-[#1E5DB8] text-white rounded-full hover:bg-[#1a4da0] transition-colors whitespace-nowrap text-sm ring-2 ring-[#D946A6]'
-                  : 'px-5 py-2 bg-[#1E5DB8] text-white rounded-full hover:bg-[#1a4da0] transition-colors whitespace-nowrap text-sm'
+                  ? 'royal-button px-5 py-2 text-white rounded-full transition-transform hover:scale-105 whitespace-nowrap text-sm ring-2 ring-[#5BC85A]'
+                  : 'royal-button px-5 py-2 text-white rounded-full transition-transform hover:scale-105 whitespace-nowrap text-sm'
               }
             >
               Book Your Service Now
@@ -82,7 +84,7 @@ export default function Navbar() {
             <Link
               to="/booking"
               onClick={() => setOpen(false)}
-              className="px-5 py-2 bg-[#1E5DB8] text-white rounded-full text-center text-sm font-medium"
+              className="royal-button px-5 py-2 text-white rounded-full text-center text-sm font-medium"
             >
               Book Your Service Now
             </Link>

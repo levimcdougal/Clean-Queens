@@ -38,7 +38,7 @@ const faqs = [
 export default function Booking() {
   return (
     <div className="w-full">
-      <section className="bg-gradient-to-br from-[#1E5DB8] to-[#1a4da0] text-white py-12">
+      <section className="royal-hero bg-gradient-to-br from-[#1E5DB8] to-[#1a4da0] text-white py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl font-bold mb-4">Book a Service</h1>
           <p className="text-lg text-white/90 max-w-2xl mx-auto">
@@ -47,7 +47,7 @@ export default function Booking() {
         </div>
       </section>
 
-      <section className="bg-white pt-8 pb-0 -mb-6">
+      <section className="color-wash-blue bg-white pt-8 pb-0 -mb-6">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <a
             href="#faq"
@@ -58,7 +58,7 @@ export default function Booking() {
         </div>
       </section>
 
-      <section className="bg-white py-8">
+      <section className="color-wash-blue bg-white py-8">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <CalEmbed calLink="cleanqueens/in-person-consultation-estimate" namespace="in-person-consultation-estimate" />
         </div>
@@ -69,10 +69,10 @@ export default function Booking() {
           <hr className="border-t border-gray-200 mb-10" />
           <h2 className="text-2xl font-bold text-[#1E5DB8] mb-8">Accepted Forms of Payment</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 justify-center items-center justify-items-center">
-            <img alt="Venmo" className="h-24 object-contain" src={venmo} />
-            <img alt="Cash App" className="h-24 object-contain" src={cashapp} />
-            <img alt="PayPal" className="h-20 object-contain" src={paypal} />
-            <img alt="Stripe" className="h-20 object-contain" src={stripe} />
+            <img alt="Venmo" className="h-24 object-contain" decoding="async" loading="lazy" src={venmo} />
+            <img alt="Cash App" className="h-24 object-contain" decoding="async" loading="lazy" src={cashapp} />
+            <img alt="PayPal" className="h-20 object-contain" decoding="async" loading="lazy" src={paypal} />
+            <img alt="Stripe" className="h-20 object-contain" decoding="async" loading="lazy" src={stripe} />
           </div>
         </div>
       </section>
