@@ -44,21 +44,21 @@ export default function Footer() {
 
         <div className="mt-5 pt-4 border-t border-white/20 text-center">
           <p className="text-white text-sm font-semibold mb-3">Find Us On</p>
-          <div className="flex items-center justify-center gap-2 sm:gap-5 flex-nowrap">
-            <a aria-label="Facebook" className="hover:opacity-80 transition-opacity" href="https://www.facebook.com" rel="noopener noreferrer" target="_blank">
-              <img alt="Facebook" className="h-10 w-10 sm:h-16 sm:w-16 object-contain" decoding="async" loading="lazy" src={facebook} />
+          <div className="mx-auto grid max-w-sm grid-cols-5 place-items-center gap-3 sm:max-w-md sm:gap-6">
+            <a aria-label="Facebook" className="flex h-12 w-12 items-center justify-center transition-opacity hover:opacity-80 sm:h-16 sm:w-16" href="https://www.facebook.com" rel="noopener noreferrer" target="_blank">
+              <img alt="Facebook" className="h-full w-full object-contain" decoding="async" loading="lazy" src={facebook} />
             </a>
-            <a aria-label="Instagram" className="hover:opacity-80 transition-opacity" href="https://www.instagram.com" rel="noopener noreferrer" target="_blank">
-              <img alt="Instagram" className="h-10 w-10 sm:h-16 sm:w-16 object-contain" decoding="async" loading="lazy" src={instagram} />
+            <a aria-label="Instagram" className="flex h-12 w-12 items-center justify-center transition-opacity hover:opacity-80 sm:h-16 sm:w-16" href="https://www.instagram.com" rel="noopener noreferrer" target="_blank">
+              <img alt="Instagram" className="h-full w-full object-contain" decoding="async" loading="lazy" src={instagram} />
             </a>
-            <a aria-label="Google" className="hover:opacity-80 transition-opacity" href="https://www.google.com" rel="noopener noreferrer" target="_blank">
-              <img alt="Google" className="h-12 w-12 sm:h-20 sm:w-20 object-contain" decoding="async" loading="lazy" src={google} />
+            <a aria-label="Google" className="flex h-12 w-12 items-center justify-center transition-opacity hover:opacity-80 sm:h-16 sm:w-16" href="https://www.google.com" rel="noopener noreferrer" target="_blank">
+              <img alt="Google" className="h-full w-full object-contain" decoding="async" loading="lazy" src={google} />
             </a>
-            <a aria-label="Nextdoor" className="hover:opacity-80 transition-opacity ml-3" href="https://www.nextdoor.com" rel="noopener noreferrer" target="_blank">
-              <img alt="Nextdoor" className="h-12 w-12 sm:h-20 sm:w-20 object-contain" decoding="async" loading="lazy" src={nextdoor} />
+            <a aria-label="Nextdoor" className="flex h-12 w-12 items-center justify-center transition-opacity hover:opacity-80 sm:h-16 sm:w-16" href="https://www.nextdoor.com" rel="noopener noreferrer" target="_blank">
+              <img alt="Nextdoor" className="h-full w-full object-contain" decoding="async" loading="lazy" src={nextdoor} />
             </a>
-            <a aria-label="Yelp" className="hover:opacity-80 transition-opacity" href="https://www.yelp.com" rel="noopener noreferrer" target="_blank">
-              <img alt="Yelp" className="h-12 w-12 sm:h-20 sm:w-20 object-contain" decoding="async" loading="lazy" src={yelp} />
+            <a aria-label="Yelp" className="flex h-12 w-12 items-center justify-center transition-opacity hover:opacity-80 sm:h-16 sm:w-16" href="https://www.yelp.com" rel="noopener noreferrer" target="_blank">
+              <img alt="Yelp" className="h-full w-full object-contain" decoding="async" loading="lazy" src={yelp} />
             </a>
           </div>
           <div className="mt-4 pt-4 border-t border-white/20 flex justify-center">
