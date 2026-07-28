@@ -18,6 +18,18 @@ import before8 from '../assets/b8.jpg'
 import after6 from '../assets/a6.jpg'
 import after7 from '../assets/a7.jpg'
 import after8 from '../assets/a8.jpg'
+import before9 from '../assets/b9.jpg'
+import before10 from '../assets/b10.jpg'
+import before11 from '../assets/b11.jpg'
+import before12 from '../assets/b12.jpg'
+import before13 from '../assets/b13.jpg'
+import before14 from '../assets/b14.jpg'
+import after9 from '../assets/a9.jpg'
+import after10 from '../assets/a10.jpg'
+import after11 from '../assets/a11.jpg'
+import after12 from '../assets/a12.jpg'
+import after13 from '../assets/a13.jpg'
+import after14 from '../assets/a14.jpg'
 
 const tomballProjects = [
   { before: before1, after: after1 },
@@ -31,6 +43,15 @@ const grovetonProjects = [
   { before: before6, after: after6 },
   { before: before7, after: after7 },
   { before: before8, after: after8 },
+]
+
+const bryanCollegeStationProjects = [
+  { before: before9, after: after9 },
+  { before: before10, after: after10 },
+  { before: before11, after: after11 },
+  { before: before12, after: after12 },
+  { before: before13, after: after13 },
+  { before: before14, after: after14 },
 ]
 
 export default function Gallery() {
@@ -175,6 +196,64 @@ export default function Gallery() {
                     <div>
                       <p className="font-bold text-gray-900">Transformation {index + 1}</p>
                       <p className="text-sm text-gray-500">Groveton, Texas</p>
+                    </div>
+                    <Sparkles className="text-[#D946A6]" size={22} />
+                  </div>
+                </article>
+              </FadeIn>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      <section className="py-14 sm:py-16" id="bryan-college-station-tx">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FadeIn>
+            <div className="mb-10 flex flex-col items-center text-center">
+              <span className="inline-flex items-center gap-2 rounded-full bg-[#5BC85A]/15 px-4 py-2 font-semibold text-[#287a31]">
+                <MapPin size={18} /> Bryan/College Station, TX
+              </span>
+              <h2 className="mt-4 text-3xl font-bold text-[#1E5DB8] sm:text-4xl">Bryan/College Station Home Transformations</h2>
+              <p className="mt-3 max-w-2xl text-gray-600">
+                Browse six real before-and-after transformations from homes we cleaned in Bryan/College Station, Texas. Select any photo to see it larger.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid gap-8 lg:grid-cols-2">
+            {bryanCollegeStationProjects.map((project, index) => (
+              <FadeIn key={project.before} delay={(index % 2) * 100}>
+                <article className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/70">
+                  <div className="grid grid-cols-2">
+                    {[
+                      { src: project.before, label: 'Before', color: 'bg-[#1E5DB8]' },
+                      { src: project.after, label: 'After', color: 'bg-[#5BC85A]' },
+                    ].map(({ src, label, color }) => (
+                      <button
+                        key={label}
+                        aria-label={`Enlarge ${label.toLowerCase()} Bryan/College Station photo ${index + 1}`}
+                        className="group relative aspect-[4/5] overflow-hidden bg-gray-100 sm:aspect-[4/3]"
+                        onClick={() => setSelectedPhoto({ src, label, number: index + 1, location: 'Bryan/College Station, TX' })}
+                        type="button"
+                      >
+                        <img
+                          alt={`${label} cleaning photo ${index + 1} from a Bryan/College Station, Texas home`}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          decoding="async"
+                          loading="lazy"
+                          src={src}
+                        />
+                        <span className={`absolute left-3 top-3 rounded-full ${color} px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-md sm:text-sm`}>
+                          {label}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between px-5 py-4">
+                    <div>
+                      <p className="font-bold text-gray-900">Transformation {index + 1}</p>
+                      <p className="text-sm text-gray-500">Bryan/College Station, Texas</p>
                     </div>
                     <Sparkles className="text-[#D946A6]" size={22} />
                   </div>

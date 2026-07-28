@@ -1,20 +1,29 @@
 import { Link } from 'react-router-dom'
 import FadeIn from '../components/FadeIn'
-import heroBg from '../assets/opt-hero-bg.jpg'
-import cleanerPhoto from '../assets/opt-cleaner-photo.jpg'
-import house1 from '../assets/house1.jpg'
-import house2 from '../assets/house2.jpg'
-import house3 from '../assets/house3.jpg'
-import house4 from '../assets/house4.jpg'
+import heroBg from '../assets/back.jpg'
+import home1 from '../assets/home1.jpg'
+import home2 from '../assets/home2.jpg'
+import home3 from '../assets/home3.jpg'
+import consultationPhoto from '../assets/con1.jpg'
+import cleaningDayPhoto from '../assets/con2.jpg'
+import enjoyCleanPhoto from '../assets/con3.jpg'
+import repeatPhoto from '../assets/con4.jpg'
 import cleaningSupplies from '../assets/opt-cleaning-supplies.jpg'
+
+const cleaningSteps = [
+  { photo: consultationPhoto, caption: 'Consultation' },
+  { photo: cleaningDayPhoto, caption: 'Cleaning Day' },
+  { photo: enjoyCleanPhoto, caption: 'Enjoy the Clean' },
+  { photo: repeatPhoto, caption: 'Repeat!' },
+]
 
 export default function Home() {
   return (
     <div className="w-full">
-      <section className="relative h-[420px] sm:h-[600px] flex items-center justify-center overflow-hidden border-b-[8px] border-[#5BC85A]">
+      <section className="relative h-[420px] sm:h-[600px] flex items-center justify-center overflow-hidden border-b-[8px] border-[#5BC85A] bg-[#052c78]">
         <img
           alt="Professional cleaning team"
-          className="absolute inset-0 w-full h-full object-cover object-[center_65%]"
+          className="absolute inset-0 h-full w-full object-contain sm:object-cover sm:object-[center_25%]"
           decoding="async"
           fetchPriority="high"
           src={heroBg}
@@ -67,14 +76,17 @@ export default function Home() {
               </div>
             </FadeIn>
             <FadeIn delay={150}>
-              <div className="relative flex justify-center">
-                <img
-                  alt="Professional cleaner"
-                  className="royal-frame max-w-full h-auto max-h-[500px] rounded-2xl"
-                  decoding="async"
-                  loading="lazy"
-                  src={cleanerPhoto}
-                />
+              <div className="royal-frame grid grid-cols-3 gap-2 overflow-hidden rounded-2xl bg-white p-2">
+                {[home1, home2, home3].map((photo, index) => (
+                  <img
+                    alt={`Clean Queens professional cleaner ${index + 1}`}
+                    className="h-52 w-full rounded-lg object-cover object-top sm:h-64 lg:h-[300px]"
+                    decoding="async"
+                    key={photo}
+                    loading="lazy"
+                    src={photo}
+                  />
+                ))}
               </div>
             </FadeIn>
           </div>
@@ -91,10 +103,20 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <FadeIn>
               <div className="grid grid-cols-2 gap-3">
-                <img alt="Clean home" className="w-full h-32 sm:h-48 object-cover rounded-lg shadow-lg" decoding="async" loading="lazy" src={house1} />
-                <img alt="Clean home" className="w-full h-32 sm:h-48 object-cover rounded-lg shadow-lg" decoding="async" loading="lazy" src={house2} />
-                <img alt="Clean home" className="w-full h-32 sm:h-48 object-cover rounded-lg shadow-lg" decoding="async" loading="lazy" src={house3} />
-                <img alt="Clean home" className="w-full h-32 sm:h-48 object-cover rounded-lg shadow-lg" decoding="async" loading="lazy" src={house4} />
+                {cleaningSteps.map(({ photo, caption }) => (
+                  <figure className="overflow-hidden rounded-xl bg-white shadow-lg" key={caption}>
+                    <img
+                      alt={caption}
+                      className="h-32 w-full object-cover object-top sm:h-48"
+                      decoding="async"
+                      loading="lazy"
+                      src={photo}
+                    />
+                    <figcaption className="px-2 py-3 text-center font-bold text-[#1E5DB8] sm:text-lg">
+                      {caption}
+                    </figcaption>
+                  </figure>
+                ))}
               </div>
             </FadeIn>
             <FadeIn delay={150}>
