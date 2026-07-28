@@ -23,7 +23,7 @@ export default function Home() {
       <section className="relative h-[420px] sm:h-[600px] flex items-center justify-center overflow-hidden border-b-[8px] border-[#5BC85A] bg-[#052c78]">
         <img
           alt="Professional cleaning team"
-          className="absolute inset-0 h-full w-full object-contain sm:object-cover sm:object-[center_25%]"
+          className="absolute inset-0 h-full w-full object-cover object-center sm:object-[center_25%]"
           decoding="async"
           fetchPriority="high"
           src={heroBg}
@@ -101,7 +101,7 @@ export default function Home() {
             </h2>
           </FadeIn>
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <FadeIn>
+            <FadeIn className="order-2 lg:order-1">
               <div className="grid grid-cols-2 gap-3">
                 {cleaningSteps.map(({ photo, caption }) => (
                   <figure className="overflow-hidden rounded-xl bg-white shadow-lg" key={caption}>
@@ -119,7 +119,7 @@ export default function Home() {
                 ))}
               </div>
             </FadeIn>
-            <FadeIn delay={150}>
+            <FadeIn className="order-1 lg:order-2" delay={150}>
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                 <p>
                   No two homes or businesses are the same, and we get that. We'll work with you to find a schedule and plan that actually makes sense for your life, not just what's easiest for us.
