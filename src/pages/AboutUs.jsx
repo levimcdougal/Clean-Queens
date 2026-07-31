@@ -21,41 +21,41 @@ const team = [
 
 export default function AboutUs() {
   return (
-    <div className="w-full">
-      <section className="royal-hero py-16 bg-gradient-to-br from-[#1E5DB8] to-[#1a4da0] text-white text-center px-4">
-        <FadeIn>
-          <h1 className="text-3xl sm:text-5xl font-bold mb-4">Meet the Clean Queens Team</h1>
-          <p className="text-lg sm:text-xl text-white/85 max-w-2xl mx-auto">
+    <div className="about-page w-full overflow-x-clip">
+      <section className="royal-hero about-hero text-white text-center">
+        <FadeIn className="about-container">
+          <h1 className="about-title font-bold">Meet the Clean Queens Team</h1>
+          <p className="about-intro text-white/85 mx-auto">
             We're a small, local team that genuinely cares about the people and communities we serve.
           </p>
         </FadeIn>
       </section>
 
-      <section className="color-wash-blue py-14 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-16">
+      <section className="color-wash-blue about-team-section bg-white">
+        <div className="about-container about-team-list">
           {team.map(({ image, name, role, bio, reverse }, i) => (
             <FadeIn key={name} delay={i * 100}>
-              <div className={reverse ? 'flex flex-col lg:flex-row-reverse gap-10 items-center' : 'flex flex-col lg:flex-row gap-10 items-center'}>
-                <div className="w-full max-w-sm mx-auto lg:max-w-none lg:w-2/5 lg:mx-0 flex-shrink-0">
+              <article className={`about-team-member${reverse ? ' about-team-member--reverse' : ''}`}>
+                <div className="about-portrait-wrap">
                   <img
                     alt={name}
-                    className="royal-frame w-full aspect-[4/5] lg:aspect-auto lg:max-h-[420px] object-cover object-top rounded-2xl"
+                    className="royal-frame about-portrait object-cover object-top rounded-2xl"
                     decoding="async"
                     loading="lazy"
                     src={image}
                   />
                 </div>
-                <div className="w-full lg:w-3/5 space-y-4">
+                <div className="about-copy space-y-4">
                   <div>
-                    <h2 className="text-3xl sm:text-4xl font-bold text-[#1E5DB8]">{name}</h2>
+                    <h2 className="about-name font-bold text-[#1E5DB8]">{name}</h2>
                     <span className="inline-block mt-1 px-4 py-1 bg-[#5BC85A] text-white text-sm font-semibold rounded-full">
                       {role}
                     </span>
                   </div>
-                  <p className="text-gray-700 text-lg leading-relaxed">{bio}</p>
+                  <p className="about-bio text-gray-700 leading-relaxed">{bio}</p>
                 </div>
-              </div>
-              {i < team.length - 1 && <hr className="mt-16 border-gray-200" />}
+              </article>
+              {i < team.length - 1 && <hr className="about-divider border-gray-200" />}
             </FadeIn>
           ))}
         </div>

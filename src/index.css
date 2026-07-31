@@ -85,4 +85,102 @@
     border: 2px solid rgb(255 255 255 / 65%);
     box-shadow: 0 7px 18px rgb(156 28 105 / 25%);
   }
+
+  /* About page: fluid sizing avoids cramped laptop layouts and oversized gaps
+     on wide desktop displays. */
+  .about-container {
+    width: min(100% - 2rem, 75rem);
+    margin-inline: auto;
+  }
+
+  .about-hero {
+    padding-block: clamp(3rem, 6vw, 5.5rem);
+  }
+
+  .about-title {
+    margin-bottom: 1rem;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  .about-intro {
+    max-width: 44rem;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+
+  .about-team-section {
+    padding-block: clamp(3rem, 6vw, 5rem);
+  }
+
+  .about-team-list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 6vw, 5rem);
+  }
+
+  .about-team-member {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4.5rem);
+  }
+
+  .about-portrait-wrap {
+    width: min(100%, 24rem);
+    margin-inline: auto;
+  }
+
+  .about-portrait {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+  }
+
+  .about-copy {
+    min-width: 0;
+  }
+
+  .about-name {
+    font-size: clamp(1.875rem, 3vw, 2.5rem);
+    line-height: 1.15;
+  }
+
+  .about-bio {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    text-wrap: pretty;
+  }
+
+  .about-divider {
+    margin-top: clamp(3rem, 6vw, 5rem);
+  }
+
+  @media (min-width: 56.25rem) {
+    .about-container {
+      width: min(100% - 4rem, 75rem);
+    }
+
+    .about-team-member {
+      grid-template-columns: minmax(17rem, 2fr) minmax(0, 3fr);
+    }
+
+    .about-team-member--reverse {
+      grid-template-columns: minmax(0, 3fr) minmax(17rem, 2fr);
+    }
+
+    .about-team-member--reverse .about-portrait-wrap {
+      grid-column: 2;
+    }
+
+    .about-team-member--reverse .about-copy {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .about-portrait-wrap {
+      width: min(100%, 26rem);
+    }
+  }
 }
