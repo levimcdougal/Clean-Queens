@@ -1,5 +1,5 @@
 import FadeIn from '../components/FadeIn'
-import ceo from '../assets/opt-ceo.jpg'
+import ceo from '../assets/ceo.jpg'
 import president from '../assets/opt-president.jpg'
 
 const team = [

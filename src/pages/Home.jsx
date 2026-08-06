@@ -8,7 +8,7 @@ import consultationPhoto from '../assets/con1.jpg'
 import cleaningDayPhoto from '../assets/con2.jpg'
 import enjoyCleanPhoto from '../assets/con3.jpg'
 import repeatPhoto from '../assets/con4.jpg'
-import cleaningSupplies from '../assets/opt-cleaning-supplies.jpg'
+import cleaningSupplies from '../assets/cleaning-supplies.png'
 
 const cleaningSteps = [
   { photo: consultationPhoto, caption: 'Consultation' },
@@ -59,7 +59,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <FadeIn>
               <div className="space-y-6">
-                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#1E5DB8] leading-tight">
+                <h2 className="text-2xl sm:text-4xl lg:text-[2.5rem] xl:text-5xl font-bold text-[#1E5DB8] leading-tight text-balance">
                   We're Your Neighbors, Not Just Your Cleaners
                 </h2>
                 <div className="space-y-4 text-gray-700 text-lg leading-relaxed">

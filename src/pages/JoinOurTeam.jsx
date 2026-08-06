@@ -29,13 +29,13 @@ const perks = [
     image: iconGrowth,
     imgClass: 'w-20 h-auto',
     title: 'Growth Opportunities',
-    desc: 'We invest in our people. Start with a few clients and grow your schedule over time by taking on more clients and building a steady cleaning route.',
+    desc: 'We invest in our people. Start with a few clients and grow your schedule over time by taking on more clients and building a steady cleaning route. Promotion to managerial positions available.',
   },
   {
     image: iconSupplies,
     imgClass: 'w-14 h-14',
     title: 'Supplies & Equipment',
-    desc: "We provide all the supplies and equipment you need, or you're welcome to use your own, the choice is yours.",
+    desc: 'We provide all the supplies and equipment you need and reimburse you for approved supplies you purchase and use.',
   },
   {
     image: iconLocation,
