@@ -74,7 +74,7 @@ export default function Gallery() {
   }, [selectedPhoto])
 
   return (
-    <div className="w-full bg-[#f8fbff]">
+    <div className="site-page gallery-page w-full bg-[#f8fbff]">
       <section className="royal-hero relative overflow-hidden bg-gradient-to-br from-[#1E5DB8] to-[#17498f] px-4 py-16 text-center text-white sm:py-20">
         <div className="absolute -left-20 -top-24 h-64 w-64 rounded-full bg-[#5BC85A]/20 blur-2xl" />
         <div className="absolute -bottom-24 -right-12 h-64 w-64 rounded-full bg-[#D946A6]/20 blur-2xl" />

@@ -1,176 +1,124 @@
 import { Link } from 'react-router-dom'
+import {
+  Building2,
+  CalendarCheck,
+  Check,
+  Home as HomeIcon,
+  ShieldCheck,
+  Sparkles,
+  SprayCan,
+  Star,
+  Truck,
+} from 'lucide-react'
 import FadeIn from '../components/FadeIn'
-import heroBg from '../assets/back.jpg'
-import home1 from '../assets/home1.jpg'
-import home2 from '../assets/home2.jpg'
-import home3 from '../assets/home3.jpg'
-import consultationPhoto from '../assets/con1.jpg'
-import cleaningDayPhoto from '../assets/con2.jpg'
-import enjoyCleanPhoto from '../assets/con3.jpg'
-import repeatPhoto from '../assets/con4.jpg'
-import cleaningSupplies from '../assets/cleaning-supplies.png'
+import heroPhoto from '../assets/back.jpg'
+import cleanHome from '../assets/con1.jpg'
 
-const cleaningSteps = [
-  { photo: consultationPhoto, caption: 'Consultation' },
-  { photo: cleaningDayPhoto, caption: 'Cleaning Day' },
-  { photo: enjoyCleanPhoto, caption: 'Enjoy the Clean' },
-  { photo: repeatPhoto, caption: 'Repeat!' },
+const services = [
+  { icon: HomeIcon, title: 'Residential', subtitle: 'Cleaning' },
+  { icon: Building2, title: 'Commercial', subtitle: 'Cleaning' },
+  { icon: SprayCan, title: 'Deep', subtitle: 'Cleaning' },
+  { icon: CalendarCheck, title: 'Recurring', subtitle: 'Cleaning' },
+  { icon: Truck, title: 'Move In /', subtitle: 'Move Out' },
+  { icon: Sparkles, title: 'Specialty', subtitle: 'Cleaning' },
+]
+
+const benefits = [
+  'Background checked & trained professionals',
+  'Customized cleaning plans',
+  'Quality products & equipment',
+  'Easy online booking & payments',
+  'On-time, every time',
+  '100% satisfaction guaranteed',
+]
+
+const reviews = [
+  { quote: 'The Clean Queens are amazing! My house has never looked better. Professional, thorough, and so kind.', name: 'Jessica R.' },
+  { quote: 'Reliable, consistent and worth every penny. I highly recommend their team!', name: 'Michael T.' },
+  { quote: "They don’t cut corners, they clean them! Best cleaning service we’ve ever used.", name: 'Amanda K.' },
 ]
 
 export default function Home() {
   return (
-    <div className="w-full">
-      <section className="relative h-[420px] sm:h-[600px] flex items-center justify-center overflow-hidden border-b-[8px] border-[#5BC85A] bg-[#052c78]">
-        <img
-          alt="Professional cleaning team"
-          className="absolute inset-0 h-full w-full object-cover object-center sm:object-[center_25%]"
-          decoding="async"
-          fetchPriority="high"
-          src={heroBg}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#052c78]/75 via-black/25 to-[#D946A6]/45" />
-        <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
-          <FadeIn>
-            <h1 className="text-2xl sm:text-4xl lg:text-7xl font-bold text-white mb-5 sm:mb-8 leading-tight">
-              Let Clean Queens transform your space. Book your service today!
+    <main>
+      <section className="home-hero">
+        <div className="home-shell home-hero__grid">
+          <FadeIn className="home-hero__copy">
+            <p className="home-eyebrow">Professional residential & commercial cleaning</p>
+            <h1>
+              <span className="home-hero__line">A <span>clean</span></span>
+              <span className="home-hero__line">You can see.</span>
+              <span className="home-hero__line">A standard</span>
+              <span className="home-hero__line">You can <span>trust.</span></span>
             </h1>
+            <p className="home-hero__intro">Quality, consistency, and genuine care—delivered by a local team that treats your space like their own.</p>
+            <div className="home-trust-row">
+              <span><ShieldCheck /> Fully insured</span>
+              <span><Star /> Satisfaction guaranteed</span>
+              <span><Check /> Licensed & reliable</span>
+            </div>
+            <div className="home-actions">
+              <Link className="home-primary" to="/booking">Book a cleaning <span>→</span></Link>
+              <Link className="home-secondary" to="/booking">Get a free quote</Link>
+            </div>
           </FadeIn>
-          <FadeIn delay={150}>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <Link
-                to="/booking"
-                className="royal-button px-7 sm:px-10 py-3 sm:py-4 text-white rounded-full transition-transform hover:scale-105 text-base sm:text-lg font-semibold"
-              >
-                Book Your Service Now
-              </Link>
-              <Link
-                to="/services"
-                className="px-7 sm:px-10 py-3 sm:py-4 bg-[#5BC85A] text-white rounded-full hover:bg-[#32a842] transition-transform hover:scale-105 text-base sm:text-lg font-semibold shadow-xl border-2 border-white/70"
-              >
-                Explore Our Cleaning Services
-              </Link>
+          <FadeIn className="home-hero__visual" delay={100}>
+            <div className="home-photo-frame">
+              <img src={heroPhoto} alt="The Clean Queens team cleaning a bright living room" fetchPriority="high" />
+              <div className="home-photo-badge"><Sparkles /> <span>We don’t cut corners.<strong> We clean them.</strong></span></div>
             </div>
           </FadeIn>
         </div>
       </section>
 
-      <section className="color-wash-blue py-10 lg:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <FadeIn>
-              <div className="space-y-6">
-                <h2 className="text-2xl sm:text-4xl lg:text-[2.5rem] xl:text-5xl font-bold text-[#1E5DB8] leading-tight text-balance">
-                  We're Your Neighbors, Not Just Your Cleaners
-                </h2>
-                <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
-                  <p>
-                    At Clean Queens, we believe a clean home or business is something everyone in our community deserves. Proudly serving Huntsville / Walker County and Houston, Texas, and the surrounding areas — and currently working to expand into other cities across the great state of Texas — we're your neighbors, and we treat every space we clean with the same care we'd give our own.
-                  </p>
-                  <p>
-                    We use eco-friendly products that are safe for your kids, your pets, and the planet. Whether it's your living room or your office, we show up consistently and leave things genuinely clean, not just surface-level tidy.
-                  </p>
-                  <p>
-                    Every person on our team takes real pride in what they do, because your home and your business matter to us, not just as a job, but as a part of the community we all share.
-                  </p>
-                </div>
-              </div>
-            </FadeIn>
-            <FadeIn delay={150}>
-              <div className="royal-frame grid grid-cols-3 gap-2 overflow-hidden rounded-2xl bg-white p-2">
-                {[home1, home2, home3].map((photo, index) => (
-                  <img
-                    alt={`Clean Queens professional cleaner ${index + 1}`}
-                    className="h-52 w-full rounded-lg object-cover object-top sm:h-64 lg:h-[300px]"
-                    decoding="async"
-                    key={photo}
-                    loading="lazy"
-                    src={photo}
-                  />
-                ))}
-              </div>
-            </FadeIn>
+      <section className="home-services" aria-label="Cleaning services">
+        <div className="home-shell">
+          <h2><span>Clean spaces.</span> Happy places.</h2>
+          <div className="home-service-grid">
+            {services.map(({ icon: Icon, title, subtitle }) => (
+              <Link to="/services" className="home-service" key={`${title}-${subtitle}`}>
+                <Icon aria-hidden="true" />
+                <strong>{title}</strong><span>{subtitle}</span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="color-wash-pink py-10 lg:py-20 bg-[#E3F2FD]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#1E5DB8] text-center mb-10 lg:mb-16">
-              Cleaning That Fits Your Life
-            </h2>
+      <section className="home-why">
+        <div className="home-shell home-why__grid">
+          <FadeIn className="home-why__photo">
+            <img src={cleanHome} alt="A beautifully cleaned home interior" loading="lazy" />
+            <div className="home-rating"><div>★★★★★</div><strong>5.0 out of 5</strong><span>Our customers love the clean</span></div>
           </FadeIn>
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <FadeIn className="order-2 lg:order-1">
-              <div className="grid grid-cols-2 gap-3">
-                {cleaningSteps.map(({ photo, caption }) => (
-                  <figure className="overflow-hidden rounded-xl bg-white shadow-lg" key={caption}>
-                    <img
-                      alt={caption}
-                      className="h-32 w-full object-cover object-top sm:h-48"
-                      decoding="async"
-                      loading="lazy"
-                      src={photo}
-                    />
-                    <figcaption className="px-2 py-3 text-center font-bold text-[#1E5DB8] sm:text-lg">
-                      {caption}
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-            </FadeIn>
-            <FadeIn className="order-1 lg:order-2" delay={150}>
-              <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
-                <p>
-                  No two homes or businesses are the same, and we get that. We'll work with you to find a schedule and plan that actually makes sense for your life, not just what's easiest for us.
-                </p>
-                <p>
-                  Whether you need us once a month or every week, whether it's a small apartment or a busy office, we're here to help. We're flexible, reliable, and always happy to adjust as your needs change.
-                </p>
-                <p>
-                  We notice the little things, the corners, the baseboards, the spots most people miss, because that's what makes a space feel truly cared for.
-                </p>
-              </div>
-            </FadeIn>
-          </div>
+          <FadeIn className="home-why__copy" delay={100}>
+            <p className="home-kicker">The Queen standard</p>
+            <h2>Why choose <span>Clean Queens?</span></h2>
+            <p>We go beyond the basics to deliver a cleaning experience you’ll love. Our trained professionals treat your home or business like royalty.</p>
+            <ul>{benefits.map(item => <li key={item}><Check /> {item}</li>)}</ul>
+          </FadeIn>
         </div>
       </section>
 
-      <section className="color-wash-blue py-10 lg:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#1E5DB8] text-center mb-10 lg:mb-16">
-              We Clean Like It's Our Own Home
-            </h2>
-          </FadeIn>
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <FadeIn>
-              <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
-                <p>
-                  When you let us into your space, we don't take that lightly. We show up on time, treat your belongings with respect, and clean with the kind of care that makes a real difference.
-                </p>
-                <p>
-                  A clean space isn't just about looks, it's about how it feels to walk through the door. We want your home to feel like a breath of fresh air, and your business to feel like a place people love to be.
-                </p>
-                <p>
-                  We're a small, local team that genuinely cares about the people we serve. That's what makes Clean Queens different.
-                </p>
-              </div>
-            </FadeIn>
-            <FadeIn delay={150}>
-              <div className="relative">
-                <img
-                  alt="Professional cleaning supplies"
-                  className="royal-frame w-full h-auto object-cover rounded-2xl"
-                  decoding="async"
-                  loading="lazy"
-                  src={cleaningSupplies}
-                />
-              </div>
-            </FadeIn>
+      <section className="home-offer">
+        <div className="home-shell home-offer__inner">
+          <div className="home-offer__crown">♛</div>
+          <div><span>New customer offer</span><strong>$25 OFF</strong><p>Your first cleaning</p></div>
+          <div className="home-offer__code"><span>Use code</span><strong>CLEAN25</strong></div>
+          <Link to="/booking">Book now & save <span>→</span></Link>
+        </div>
+      </section>
+
+      <section className="home-reviews">
+        <div className="home-shell">
+          <div className="home-section-heading"><div><p>Real words. Real sparkle.</p><h2>What our clients are saying</h2></div><Link to="/gallery">See our work →</Link></div>
+          <div className="home-review-grid">
+            {reviews.map(review => (
+              <article key={review.name}><div className="home-review-stars">★★★★★</div><blockquote>“{review.quote}”</blockquote><strong>— {review.name}</strong></article>
+            ))}
           </div>
         </div>
       </section>
-    </div>
+    </main>
   )
 }

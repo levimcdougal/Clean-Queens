@@ -21,7 +21,7 @@ const team = [
 
 export default function AboutUs() {
   return (
-    <div className="about-page w-full overflow-x-clip">
+    <div className="site-page about-page w-full overflow-x-clip">
       <section className="royal-hero about-hero text-white text-center">
         <FadeIn className="about-container">
           <h1 className="about-title font-bold">Meet the Clean Queens Team</h1>

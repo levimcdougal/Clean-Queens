@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import FadeIn from '../components/FadeIn'
-import deepClean from '../assets/opt-service-deep-clean.jpg'
-import weekly from '../assets/service-weekly.png'
-import biweekly from '../assets/service-biweekly.png'
-import monthly from '../assets/service-monthly.png'
-import moveOut from '../assets/opt-service-moveout.jpg'
-import postConstruction from '../assets/opt-service-postconstruction.jpg'
-import subscription from '../assets/opt-service-subscription.jpg'
-import carpetCleaning from '../assets/opt-car.jpg'
+import deepClean from '../assets/service-deep-clean-pink.png'
+import weekly from '../assets/service-weekly-pink.png'
+import biweekly from '../assets/service-biweekly-pink.png'
+import monthly from '../assets/service-monthly-pink.png'
+import moveOut from '../assets/service-moveout-pink.png'
+import postConstruction from '../assets/service-postconstruction-pink.png'
+import subscription from '../assets/service-subscription-pink.png'
+import carpetCleaning from '../assets/service-carpet-pink.png'
 import venmo from '../assets/venmo.png'
 import cashapp from '../assets/cashapp.png'
 import paypal from '../assets/paypal.png'
@@ -73,7 +73,7 @@ export default function Services() {
   }
 
   return (
-    <div className="w-full">
+    <div className="site-page services-page w-full">
       <section className="royal-hero bg-gradient-to-br from-[#1E5DB8] to-[#1a4da0] text-white py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>

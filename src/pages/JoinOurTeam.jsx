@@ -56,7 +56,7 @@ const requirements = [
 
 export default function JoinOurTeam() {
   return (
-    <div className="w-full">
+    <div className="site-page careers-page w-full">
       <section className="royal-hero bg-gradient-to-br from-[#1E5DB8] to-[#1a4da0] text-white py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeIn>

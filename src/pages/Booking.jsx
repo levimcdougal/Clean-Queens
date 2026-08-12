@@ -37,7 +37,7 @@ const faqs = [
 
 export default function Booking() {
   return (
-    <div className="w-full">
+    <div className="site-page booking-page w-full">
       <section className="royal-hero bg-gradient-to-br from-[#1E5DB8] to-[#1a4da0] text-white py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl font-bold mb-4">Book a Service</h1>
