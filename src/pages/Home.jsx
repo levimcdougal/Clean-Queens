@@ -33,9 +33,11 @@ const benefits = [
 ]
 
 const reviews = [
-  { quote: 'The Clean Queens are amazing! My house has never looked better. Professional, thorough, and so kind.', name: 'Jessica R.' },
-  { quote: 'Reliable, consistent and worth every penny. I highly recommend their team!', name: 'Michael T.' },
-  { quote: "They don’t cut corners, they clean them! Best cleaning service we’ve ever used.", name: 'Amanda K.' },
+  { quote: 'Just had my first cleaning from them and Jasmine did an AMAZING JOB! They were quick, efficient, and detailed. I was very impressed, and the prices are more than reasonable, especially for having a 2,500 sq. ft. home!', name: 'Donna', source: 'Google' },
+  { quote: 'Booked them for a move-out deep clean and they absolutely nailed it. The place looked better than when I moved in. Fast, detailed, and professional.', name: 'Hunter Roberts', source: 'Google' },
+  { quote: 'They did a great job on my house getting it rental ready. They did a deep clean and the house looks dang near brand new. Thanks again, guys!', name: 'Robert B.', source: 'Yelp' },
+  { quote: "Jennifer was amazing! She was very kind and thorough. She made his apartment look like he had just moved in. It smells so much better and is so clean. I can't say enough good things about her and this company. I'll be calling them again.", name: 'Janelle T.', source: 'Yelp' },
+  { quote: 'Amazing service done by Guy, the owner, with cleaning and taking care of my home. It was a last-minute appointment and he was able to make it.', name: 'Daranijo T.', source: 'Yelp' },
 ]
 
 export default function Home() {
@@ -58,8 +60,8 @@ export default function Home() {
               <span><Check /> Licensed & reliable</span>
             </div>
             <div className="home-actions">
-              <Link className="home-primary" to="/booking">Book a cleaning <span>→</span></Link>
-              <Link className="home-secondary" to="/booking">Get a free quote</Link>
+              <Link className="home-primary" to="/services">Explore our services <span>→</span></Link>
+              <Link className="home-secondary" to="/quote">Get a free quote</Link>
             </div>
           </FadeIn>
           <FadeIn className="home-hero__visual" delay={100}>
@@ -105,7 +107,7 @@ export default function Home() {
           <div className="home-offer__crown">♛</div>
           <div><span>New customer offer</span><strong>$25 OFF</strong><p>Your first cleaning</p></div>
           <div className="home-offer__code"><span>Use code</span><strong>CLEAN25</strong></div>
-          <Link to="/booking">Book now & save <span>→</span></Link>
+          <Link to="/quote">Claim this offer <span>→</span></Link>
         </div>
       </section>
 
@@ -114,7 +116,7 @@ export default function Home() {
           <div className="home-section-heading"><div><p>Real words. Real sparkle.</p><h2>What our clients are saying</h2></div><Link to="/gallery">See our work →</Link></div>
           <div className="home-review-grid">
             {reviews.map(review => (
-              <article key={review.name}><div className="home-review-stars">★★★★★</div><blockquote>“{review.quote}”</blockquote><strong>— {review.name}</strong></article>
+              <article key={review.name}><div className="home-review-stars">★★★★★</div><blockquote>“{review.quote}”</blockquote><div className="home-review-author"><strong>— {review.name}</strong><span>{review.source} review</span></div></article>
             ))}
           </div>
         </div>

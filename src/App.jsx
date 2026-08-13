@@ -8,6 +8,7 @@ import AboutUs from './pages/AboutUs'
 import Booking from './pages/Booking'
 import JoinOurTeam from './pages/JoinOurTeam'
 import Gallery from './pages/Gallery'
+import Quote from './pages/Quote'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -31,6 +32,7 @@ export default function App() {
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/booking" element={<Booking />} />
+            <Route path="/quote" element={<Quote />} />
             <Route path="/join-our-team" element={<JoinOurTeam />} />
           </Routes>
         </main>

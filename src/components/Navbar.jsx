@@ -24,11 +24,11 @@ export default function Navbar() {
           <div className="site-nav__links">
             {links.map(link => <Link className={pathname === link.to ? 'active' : ''} key={link.to} to={link.to}>{link.label}</Link>)}
           </div>
-          <Link className={`site-nav__book${pathname === '/booking' ? ' active' : ''}`} to="/booking">Book a service</Link>
-          <div className="site-nav__contact"><Phone /><div><span>Call or text</span><a href="tel:8442567691">844-CLN-QNZ1</a></div></div>
+          <Link className={`site-nav__book${pathname === '/booking' ? ' active' : ''}`} to="/booking">Schedule estimate</Link>
+          <div className="site-nav__contact"><Phone /><div><span>Call toll-free</span><a href="tel:8442567691">844-CLN-QNZ1</a></div></div>
           <button className="site-nav__toggle" onClick={() => setOpen(value => !value)} aria-label="Toggle navigation">{open ? <X /> : <Menu />}</button>
         </div>
-        {open && <div className="site-nav__mobile">{links.map(link => <Link onClick={() => setOpen(false)} key={link.to} to={link.to}>{link.label}</Link>)}<Link onClick={() => setOpen(false)} to="/booking">Book a service</Link></div>}
+        {open && <div className="site-nav__mobile">{links.map(link => <Link onClick={() => setOpen(false)} key={link.to} to={link.to}>{link.label}</Link>)}<Link onClick={() => setOpen(false)} to="/booking">Schedule estimate</Link><Link onClick={() => setOpen(false)} to="/quote">Request a quote</Link></div>}
       </nav>
     </>
   )
