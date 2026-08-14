@@ -11,7 +11,7 @@ import {
   Truck,
 } from 'lucide-react'
 import FadeIn from '../components/FadeIn'
-import heroPhoto from '../assets/back.jpg'
+import heroPhoto from '../assets/backk.jpg'
 import cleanHome from '../assets/con1.jpg'
 
 const services = [

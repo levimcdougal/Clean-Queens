@@ -5,6 +5,7 @@ import iconCrown from '../assets/icon-crown.png'
 import iconGrowth from '../assets/icon-growth.png'
 import iconSupplies from '../assets/icon-supplies.png'
 import iconLocation from '../assets/icon-location.png'
+import teamPhoto from '../assets/IMG_0366.jpg'
 
 const perks = [
   {
@@ -73,6 +74,9 @@ export default function JoinOurTeam() {
             <span className="inline-block px-10 py-4 bg-[#5BC85A] text-white rounded-md text-lg font-semibold shadow-lg">
               Call or Text — Toll Free: 844-CLN-QNZ1 · Local: 936-581-7119
             </span>
+          </FadeIn>
+          <FadeIn delay={325}>
+            <img className="careers-hero-photo" src={teamPhoto} alt="The original Clean Queens team celebrating together" />
           </FadeIn>
         </div>
       </section>

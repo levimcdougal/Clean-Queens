@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react'
 import CalEmbed from '../components/CalEmbed'
 import venmo from '../assets/venmo.png'
 import cashapp from '../assets/cashapp.png'
@@ -35,6 +36,77 @@ const faqs = [
   },
 ]
 
+// Starting estimate assumptions. Keep these values together so the owner can
+// adjust pricing without changing the calculator logic.
+const estimateRates = {
+  base: 95,
+  bedroom: 18,
+  bathroom: 32,
+  squareFootBands: [
+    { upTo: 1000, amount: 0 },
+    { upTo: 1500, amount: 25 },
+    { upTo: 2000, amount: 50 },
+    { upTo: 2500, amount: 80 },
+    { upTo: 3000, amount: 115 },
+    { upTo: Infinity, amount: 155 },
+  ],
+  serviceMultipliers: {
+    standard: 1,
+    deep: 1.45,
+    move: 1.6,
+  },
+  frequencyDiscounts: {
+    once: 0,
+    weekly: 0.15,
+    biweekly: 0.1,
+    monthly: 0.05,
+  },
+  rangeVariance: 0.12,
+}
+
+function QuoteEstimator() {
+  const [bedrooms, setBedrooms] = useState(2)
+  const [bathrooms, setBathrooms] = useState(1)
+  const [squareFeet, setSquareFeet] = useState(1200)
+  const [service, setService] = useState('standard')
+  const [frequency, setFrequency] = useState('once')
+
+  const estimate = useMemo(() => {
+    const sizeCharge = estimateRates.squareFootBands.find(band => squareFeet <= band.upTo)?.amount ?? 0
+    const subtotal = estimateRates.base + (bedrooms * estimateRates.bedroom) + (bathrooms * estimateRates.bathroom) + sizeCharge
+    const adjusted = subtotal * estimateRates.serviceMultipliers[service] * (1 - estimateRates.frequencyDiscounts[frequency])
+    const low = Math.round((adjusted * (1 - estimateRates.rangeVariance)) / 5) * 5
+    const high = Math.round((adjusted * (1 + estimateRates.rangeVariance)) / 5) * 5
+    return { low: Math.max(low, 95), high: Math.max(high, 110) }
+  }, [bathrooms, bedrooms, frequency, service, squareFeet])
+
+  return (
+    <section className="booking-estimator" aria-labelledby="estimate-title">
+      <div className="booking-estimator__intro">
+        <p className="home-kicker">Plan your cleaning</p>
+        <h2 id="estimate-title">Instant Quote Estimator</h2>
+        <p>Enter a few details to see a preliminary price range for one cleaning visit.</p>
+      </div>
+      <div className="booking-estimator__layout">
+        <div className="booking-estimator__fields">
+          <label>Cleaning type<select value={service} onChange={event => setService(event.target.value)}><option value="standard">Standard cleaning</option><option value="deep">Deep cleaning</option><option value="move">Move-in / move-out</option></select></label>
+          <label>Bedrooms<input type="number" min="0" max="12" value={bedrooms} onChange={event => setBedrooms(Math.max(0, Number(event.target.value)))} /></label>
+          <label>Bathrooms<input type="number" min="0" max="12" step="0.5" value={bathrooms} onChange={event => setBathrooms(Math.max(0, Number(event.target.value)))} /></label>
+          <label>Approx. square feet<input type="number" min="300" max="10000" step="100" value={squareFeet} onChange={event => setSquareFeet(Math.max(300, Number(event.target.value)))} /></label>
+          <label>Frequency<select value={frequency} onChange={event => setFrequency(event.target.value)}><option value="once">One-time</option><option value="weekly">Weekly</option><option value="biweekly">Every two weeks</option><option value="monthly">Monthly</option></select></label>
+        </div>
+        <aside className="booking-estimator__result" aria-live="polite">
+          <span>Your estimated range</span>
+          <strong>${estimate.low}–${estimate.high}</strong>
+          <small>per visit</small>
+          <a href="#schedule-cleaning">Schedule an estimate</a>
+        </aside>
+      </div>
+      <p className="booking-estimator__disclaimer">This is just an estimate. For more accurate information, schedule an in-person consultation or email interior photos to us at <a href="mailto:quotes@cleanqueens.net">quotes@cleanqueens.net</a>. Final pricing may vary based on the home’s condition, requested tasks, accessibility, and add-on services.</p>
+    </section>
+  )
+}
+
 export default function Booking() {
   return (
     <div className="site-page booking-page w-full">
@@ -58,7 +130,9 @@ export default function Booking() {
         </div>
       </section>
 
-      <section className="color-wash-blue bg-white py-8">
+      <div className="booking-estimator-shell"><QuoteEstimator /></div>
+
+      <section className="color-wash-blue bg-white py-8" id="schedule-cleaning">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <CalEmbed calLink="cleanqueens/in-person-consultation-estimate" namespace="in-person-consultation-estimate" />
         </div>
