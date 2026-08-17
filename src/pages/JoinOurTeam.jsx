@@ -158,9 +158,9 @@ export default function JoinOurTeam() {
                       <p className="font-semibold text-[#1E5DB8]">Email Us</p>
                       <a
                         className="text-gray-700 hover:text-[#1E5DB8] transition-colors font-medium break-all"
-                        href="mailto:hiring@cleanqueens.net"
+                        href="mailto:careers@cleanqueens.net"
                       >
-                        hiring@cleanqueens.net
+                        careers@cleanqueens.net
                       </a>
                     </div>
                   </div>
