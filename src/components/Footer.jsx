@@ -8,11 +8,11 @@ import nextdoor from '../assets/xe.png'
 import yelp from '../assets/yelp-circle.png'
 
 const socials = [
-  { src: facebook, label: 'Facebook', href: 'https://www.facebook.com' },
-  { src: instagram, label: 'Instagram', href: 'https://www.instagram.com' },
-  { src: google, label: 'Google', href: 'https://www.google.com' },
+  { src: facebook, label: 'Facebook', href: 'https://www.facebook.com/share/1C2oddjbmE/?mibextid=wwXIfr' },
+  { src: instagram, label: 'Instagram', href: 'https://www.instagram.com/cleanqu33nz?igsi=MWVscGIxa2xzNnVq' },
+  { src: google, label: 'Google', href: 'https://share.google/LFZNNBtRFJ8DrrCB4' },
   { src: nextdoor, label: 'Nextdoor', href: 'https://www.nextdoor.com' },
-  { src: yelp, label: 'Yelp', href: 'https://www.yelp.com' },
+  { src: yelp, label: 'Yelp', href: 'https://m.yelp.com/biz/clean-queens-huntsville' },
 ]
 
 export default function Footer() {
