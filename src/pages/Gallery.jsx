@@ -30,6 +30,42 @@ import after11 from '../assets/a11.jpg'
 import after12 from '../assets/a12.jpg'
 import after13 from '../assets/a13.jpg'
 import after14 from '../assets/a14.jpg'
+import grapeland1 from '../assets/pic1.jpg'
+import grapeland2 from '../assets/pic2.jpg'
+import grapeland3 from '../assets/pic3.jpg'
+import grapeland4 from '../assets/pic4.jpg'
+import grapeland5 from '../assets/pic5.jpg'
+import grapeland6 from '../assets/pic6.jpg'
+import grapeland7 from '../assets/pic7.jpg'
+import grapeland8 from '../assets/pic8.jpg'
+import grapeland9 from '../assets/pic9.jpg'
+import grapeland10 from '../assets/pic10.jpg'
+import huntsville11 from '../assets/pic11.jpg'
+import huntsville12 from '../assets/pic12.jpg'
+import huntsville13 from '../assets/pic13.jpg'
+import huntsville14 from '../assets/pic14.jpg'
+import huntsville15 from '../assets/pic15.jpg'
+import huntsville16 from '../assets/pic16.jpg'
+import huntsville17 from '../assets/pic17.jpg'
+import huntsville18 from '../assets/pic18.jpg'
+import huntsville19 from '../assets/pic19.jpg'
+import huntsville20 from '../assets/pic20.jpg'
+import huntsville21 from '../assets/pic21.jpg'
+import huntsville22 from '../assets/pic22.jpg'
+import moveOut23 from '../assets/pic23.jpg'
+import moveOut24 from '../assets/pic24.jpg'
+import moveOut25 from '../assets/pic25.jpg'
+import moveOut26 from '../assets/pic26.jpg'
+import moveOut27 from '../assets/pic27.jpg'
+import moveOut28 from '../assets/pic28.jpg'
+import moveOut29 from '../assets/pic29.jpg'
+import moveOut30 from '../assets/pic30.jpg'
+import moveOut31 from '../assets/pic31.jpg'
+import moveOut32 from '../assets/pic32.jpg'
+import moveOut33 from '../assets/pic33.jpg'
+import moveOut34 from '../assets/pic34.jpg'
+import moveOut35 from '../assets/pic35.jpg'
+import moveOut36 from '../assets/pic36.jpg'
 
 const tomballProjects = [
   { before: before1, after: after1 },
@@ -52,6 +88,33 @@ const bryanCollegeStationProjects = [
   { before: before12, after: after12 },
   { before: before13, after: after13 },
   { before: before14, after: after14 },
+]
+
+const grapelandProjects = [
+  { before: grapeland2, after: grapeland1 },
+  { before: grapeland4, after: grapeland3 },
+  { before: grapeland6, after: grapeland5 },
+  { before: grapeland8, after: grapeland7 },
+  { before: grapeland10, after: grapeland9 },
+]
+
+const huntsvilleProjects = [
+  { before: huntsville12, after: huntsville11 },
+  { before: huntsville14, after: huntsville13 },
+  { before: huntsville16, after: huntsville15 },
+  { before: huntsville18, after: huntsville17 },
+  { before: huntsville20, after: huntsville19 },
+  { before: huntsville22, after: huntsville21 },
+]
+
+const huntsvilleMoveOutProjects = [
+  { before: moveOut23, after: moveOut24 },
+  { before: moveOut25, after: moveOut26 },
+  { before: moveOut27, after: moveOut28 },
+  { before: moveOut29, after: moveOut30 },
+  { before: moveOut31, after: moveOut32 },
+  { before: moveOut33, after: moveOut34 },
+  { before: moveOut35, after: moveOut36 },
 ]
 
 export default function Gallery() {
@@ -254,6 +317,180 @@ export default function Gallery() {
                     <div>
                       <p className="font-bold text-gray-900">Transformation {index + 1}</p>
                       <p className="text-sm text-gray-500">Bryan/College Station, Texas</p>
+                    </div>
+                    <Sparkles className="text-[#D946A6]" size={22} />
+                  </div>
+                </article>
+              </FadeIn>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      <section className="bg-white py-14 sm:py-16" id="grapeland-tx">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FadeIn>
+            <div className="mb-10 flex flex-col items-center text-center">
+              <span className="inline-flex items-center gap-2 rounded-full bg-[#D946A6]/10 px-4 py-2 font-semibold text-[#b42f87]">
+                <MapPin size={18} /> Grapeland, TX
+              </span>
+              <h2 className="mt-4 text-3xl font-bold text-[#1E5DB8] sm:text-4xl">Grapeland Deep Clean</h2>
+              <p className="mt-3 max-w-2xl text-gray-600">
+                See the before-and-after results from a detailed deep clean in Grapeland, Texas. Select any photo to see it larger.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid gap-8 lg:grid-cols-2">
+            {grapelandProjects.map((project, index) => (
+              <FadeIn key={project.before} delay={(index % 2) * 100}>
+                <article className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/70">
+                  <div className="grid grid-cols-2">
+                    {[
+                      { src: project.before, label: 'Before', color: 'bg-[#1E5DB8]' },
+                      { src: project.after, label: 'After', color: 'bg-[#5BC85A]' },
+                    ].map(({ src, label, color }) => (
+                      <button
+                        key={label}
+                        aria-label={`Enlarge ${label.toLowerCase()} Grapeland photo ${index + 1}`}
+                        className="group relative aspect-[4/5] overflow-hidden bg-gray-100 sm:aspect-[4/3]"
+                        onClick={() => setSelectedPhoto({ src, label, number: index + 1, location: 'Grapeland, TX' })}
+                        type="button"
+                      >
+                        <img
+                          alt={`${label} deep cleaning photo ${index + 1} from a Grapeland, Texas home`}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          decoding="async"
+                          loading="lazy"
+                          src={src}
+                        />
+                        <span className={`absolute left-3 top-3 rounded-full ${color} px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-md sm:text-sm`}>
+                          {label}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between px-5 py-4">
+                    <div>
+                      <p className="font-bold text-gray-900">Deep Clean Transformation {index + 1}</p>
+                      <p className="text-sm text-gray-500">Grapeland, Texas</p>
+                    </div>
+                    <Sparkles className="text-[#D946A6]" size={22} />
+                  </div>
+                </article>
+              </FadeIn>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      <section className="py-14 sm:py-16" id="huntsville-tx">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FadeIn>
+            <div className="mb-10 flex flex-col items-center text-center">
+              <span className="inline-flex items-center gap-2 rounded-full bg-[#5BC85A]/15 px-4 py-2 font-semibold text-[#287a31]">
+                <MapPin size={18} /> Huntsville, TX
+              </span>
+              <h2 className="mt-4 text-3xl font-bold text-[#1E5DB8] sm:text-4xl">Huntsville Deep Clean</h2>
+              <p className="mt-3 max-w-2xl text-gray-600">
+                See six before-and-after transformations from a detailed deep clean in Huntsville, Texas. Select any photo to see it larger.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid gap-8 lg:grid-cols-2">
+            {huntsvilleProjects.map((project, index) => (
+              <FadeIn key={project.before} delay={(index % 2) * 100}>
+                <article className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/70">
+                  <div className="grid grid-cols-2">
+                    {[
+                      { src: project.before, label: 'Before', color: 'bg-[#1E5DB8]' },
+                      { src: project.after, label: 'After', color: 'bg-[#5BC85A]' },
+                    ].map(({ src, label, color }) => (
+                      <button
+                        key={label}
+                        aria-label={`Enlarge ${label.toLowerCase()} Huntsville photo ${index + 1}`}
+                        className="group relative aspect-[4/5] overflow-hidden bg-gray-100 sm:aspect-[4/3]"
+                        onClick={() => setSelectedPhoto({ src, label, number: index + 1, location: 'Huntsville, TX' })}
+                        type="button"
+                      >
+                        <img
+                          alt={`${label} deep cleaning photo ${index + 1} from a Huntsville, Texas home`}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          decoding="async"
+                          loading="lazy"
+                          src={src}
+                        />
+                        <span className={`absolute left-3 top-3 rounded-full ${color} px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-md sm:text-sm`}>
+                          {label}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between px-5 py-4">
+                    <div>
+                      <p className="font-bold text-gray-900">Deep Clean Transformation {index + 1}</p>
+                      <p className="text-sm text-gray-500">Huntsville, Texas</p>
+                    </div>
+                    <Sparkles className="text-[#D946A6]" size={22} />
+                  </div>
+                </article>
+              </FadeIn>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      <section className="bg-white py-14 sm:py-16" id="huntsville-move-out-clean">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FadeIn>
+            <div className="mb-10 flex flex-col items-center text-center">
+              <span className="inline-flex items-center gap-2 rounded-full bg-[#D946A6]/10 px-4 py-2 font-semibold text-[#b42f87]">
+                <MapPin size={18} /> Huntsville, TX
+              </span>
+              <h2 className="mt-4 text-3xl font-bold text-[#1E5DB8] sm:text-4xl">Huntsville Move-Out Clean</h2>
+              <p className="mt-3 max-w-2xl text-gray-600">
+                See seven before-and-after transformations from a detailed move-out clean in Huntsville, Texas. Select any photo to see it larger.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid gap-8 lg:grid-cols-2">
+            {huntsvilleMoveOutProjects.map((project, index) => (
+              <FadeIn key={project.before} delay={(index % 2) * 100}>
+                <article className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/70">
+                  <div className="grid grid-cols-2">
+                    {[
+                      { src: project.before, label: 'Before', color: 'bg-[#1E5DB8]' },
+                      { src: project.after, label: 'After', color: 'bg-[#5BC85A]' },
+                    ].map(({ src, label, color }) => (
+                      <button
+                        key={label}
+                        aria-label={`Enlarge ${label.toLowerCase()} Huntsville move-out photo ${index + 1}`}
+                        className="group relative aspect-[4/5] overflow-hidden bg-gray-100 sm:aspect-[4/3]"
+                        onClick={() => setSelectedPhoto({ src, label, number: index + 1, location: 'Huntsville, TX' })}
+                        type="button"
+                      >
+                        <img
+                          alt={`${label} move-out cleaning photo ${index + 1} from a Huntsville, Texas home`}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          decoding="async"
+                          loading="lazy"
+                          src={src}
+                        />
+                        <span className={`absolute left-3 top-3 rounded-full ${color} px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-md sm:text-sm`}>
+                          {label}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between px-5 py-4">
+                    <div>
+                      <p className="font-bold text-gray-900">Move-Out Transformation {index + 1}</p>
+                      <p className="text-sm text-gray-500">Huntsville, Texas</p>
                     </div>
                     <Sparkles className="text-[#D946A6]" size={22} />
                   </div>

@@ -11,7 +11,7 @@ const socials = [
   { src: facebook, label: 'Facebook', href: 'https://www.facebook.com/share/1C2oddjbmE/?mibextid=wwXIfr' },
   { src: instagram, label: 'Instagram', href: 'https://www.instagram.com/cleanqu33nz?igsi=MWVscGIxa2xzNnVq' },
   { src: google, label: 'Google', href: 'https://share.google/LFZNNBtRFJ8DrrCB4' },
-  { src: nextdoor, label: 'Nextdoor', href: 'https://www.nextdoor.com' },
+  { src: nextdoor, label: 'Nextdoor', href: 'https://nextdoor.com/page/clean-queens-huntsville-tx?share_platform=10&utm_campaign=1787387199359&share_action_id=89676d98-18bd-4da7-9cd1-b7a645b4b3e1' },
   { src: yelp, label: 'Yelp', href: 'https://m.yelp.com/biz/clean-queens-huntsville' },
 ]
 
