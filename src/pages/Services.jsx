@@ -9,6 +9,7 @@ import moveOut from '../assets/service-moveout-pink.png'
 import postConstruction from '../assets/service-postconstruction-pink.png'
 import subscription from '../assets/service-subscription-pink.png'
 import carpetCleaning from '../assets/service-carpet-pink.png'
+import laundry from '../assets/service-laundry-pink.png'
 import venmo from '../assets/venmo.png'
 import cashapp from '../assets/cashapp.png'
 import paypal from '../assets/paypal.png'
@@ -38,6 +39,13 @@ const services = [
     title: 'Monthly',
     desc: 'A routine clean of your home or business, scheduled once per month.',
     details: 'Monthly service gives your home or business a regular refresh with focused attention on kitchens, bathrooms, floors, dusting, and general surfaces. It works well for lower-traffic spaces that still need professional care.',
+  },
+  {
+    image: laundry,
+    title: 'Laundry Service',
+    badge: 'Cleaning Add-On',
+    desc: 'Add wash, dry, fold, and put-away service to an eligible routine house cleaning for a per-load fee.',
+    details: 'Laundry service is available only as an add-on to weekly, bi-weekly, monthly, or subscription house cleaning. It is priced per load and is not offered as a stand-alone service or with post-construction, move-in, or move-out cleans.',
   },
   {
     image: moveOut,
@@ -90,17 +98,21 @@ export default function Services() {
       <section className="color-wash-blue pt-12 pb-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="color-card-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 items-stretch">
-            {services.map(({ image, title, desc, details, extraClass, cardClass = '' }, i) => {
+            {services.map(({ image, title, badge, desc, details, extraClass, cardClass = '' }, i) => {
               const isExpanded = expandedService === title
               const detailsId = `service-details-${i}`
-              const centeredFinalRow = i === 6 ? 'lg:col-start-2' : i === 7 ? 'lg:col-start-4' : ''
 
               return (
-              <FadeIn key={title} delay={(i % 3) * 100} className={`h-full lg:col-span-2 ${centeredFinalRow} ${extraClass || ''}`}>
+              <FadeIn key={title} delay={(i % 3) * 100} className={`h-full lg:col-span-2 ${extraClass || ''}`}>
                 <div className={`bg-white border-2 border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow text-center flex flex-col w-full h-full ${cardClass}`}>
                   <div className="mb-6 flex justify-center items-center h-[200px]">
                     <img alt={title} className="w-auto h-full max-w-[300px] object-contain" decoding="async" loading="lazy" src={image} />
                   </div>
+                  {badge && (
+                    <span className="mx-auto mb-3 rounded-full bg-[#fff2f7] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[#d61e69]">
+                      {badge}
+                    </span>
+                  )}
                   <h3 className="text-2xl font-semibold mb-3 text-[#1E5DB8]">{title}</h3>
                   <p className="text-gray-600 mb-4 min-h-[60px]">{desc}</p>
                   {isExpanded && (

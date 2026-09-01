@@ -101,7 +101,7 @@ const grapelandProjects = [
 const huntsvilleProjects = [
   { before: huntsville12, after: huntsville11 },
   { before: huntsville14, after: huntsville13 },
-  { before: huntsville16, after: huntsville15 },
+  { before: huntsville15, after: huntsville16 },
   { before: huntsville18, after: huntsville17 },
   { before: huntsville20, after: huntsville19 },
   { before: huntsville22, after: huntsville21 },
@@ -112,7 +112,7 @@ const huntsvilleMoveOutProjects = [
   { before: moveOut25, after: moveOut26 },
   { before: moveOut27, after: moveOut28 },
   { before: moveOut29, after: moveOut30 },
-  { before: moveOut31, after: moveOut32 },
+  { before: moveOut32, after: moveOut31 },
   { before: moveOut33, after: moveOut34 },
   { before: moveOut35, after: moveOut36 },
 ]
