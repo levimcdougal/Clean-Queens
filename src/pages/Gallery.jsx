@@ -44,8 +44,6 @@ import huntsville11 from '../assets/pic11.jpg'
 import huntsville12 from '../assets/pic12.jpg'
 import huntsville13 from '../assets/pic13.jpg'
 import huntsville14 from '../assets/pic14.jpg'
-import huntsville15 from '../assets/pic15.jpg'
-import huntsville16 from '../assets/pic16.jpg'
 import huntsville17 from '../assets/pic17.jpg'
 import huntsville18 from '../assets/pic18.jpg'
 import huntsville19 from '../assets/pic19.jpg'
@@ -101,7 +99,6 @@ const grapelandProjects = [
 const huntsvilleProjects = [
   { before: huntsville12, after: huntsville11 },
   { before: huntsville14, after: huntsville13 },
-  { before: huntsville15, after: huntsville16 },
   { before: huntsville18, after: huntsville17 },
   { before: huntsville20, after: huntsville19 },
   { before: huntsville22, after: huntsville21 },
@@ -395,7 +392,7 @@ export default function Gallery() {
               </span>
               <h2 className="mt-4 text-3xl font-bold text-[#1E5DB8] sm:text-4xl">Huntsville Deep Clean</h2>
               <p className="mt-3 max-w-2xl text-gray-600">
-                See six before-and-after transformations from a detailed deep clean in Huntsville, Texas. Select any photo to see it larger.
+                See five before-and-after transformations from a detailed deep clean in Huntsville, Texas. Select any photo to see it larger.
               </p>
             </div>
           </FadeIn>

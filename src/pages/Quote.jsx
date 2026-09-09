@@ -64,7 +64,7 @@ export default function Quote() {
           <aside className="quote-contact">
             <p className="home-kicker">Prefer to talk?</p>
             <p><strong>Toll-free calling</strong><a href="tel:8442567691">844-CLN-QNZ1</a><span>844-256-7691</span></p>
-            <p><strong>Local call or text</strong><a href="tel:9365817119">936-581-7119</a></p>
+            <p><strong>Local call or text</strong><a href="tel:9362935065">936-293-5065</a></p>
             <p><strong>Quote email</strong><a href="mailto:quotes@cleanqueens.net">quotes@cleanqueens.net</a></p>
             <a className="quote-schedule" href="/booking">Ready to choose a time? Schedule an estimate</a>
           </aside>
