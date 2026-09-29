@@ -1,3 +1,4 @@
+import AcceptedPayments from '../components/AcceptedPayments'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import FadeIn from '../components/FadeIn'
@@ -10,10 +11,6 @@ import postConstruction from '../assets/service-postconstruction-pink.png'
 import subscription from '../assets/service-subscription-pink.png'
 import carpetCleaning from '../assets/service-carpet-pink.png'
 import laundry from '../assets/service-laundry-pink.png'
-import venmo from '../assets/venmo.png'
-import cashapp from '../assets/cashapp.png'
-import paypal from '../assets/paypal.png'
-import stripe from '../assets/stripe.png'
 
 const services = [
   {
@@ -139,18 +136,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="py-10 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <hr className="border-t border-gray-200 mb-10" />
-          <h2 className="text-2xl font-bold text-[#1E5DB8] mb-8">Accepted Forms of Payment</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 justify-center items-center justify-items-center">
-            <img alt="Venmo" className="h-24 object-contain" decoding="async" loading="lazy" src={venmo} />
-            <img alt="Cash App" className="h-24 object-contain" decoding="async" loading="lazy" src={cashapp} />
-            <img alt="PayPal" className="h-20 object-contain" decoding="async" loading="lazy" src={paypal} />
-            <img alt="Stripe" className="h-20 object-contain" decoding="async" loading="lazy" src={stripe} />
-          </div>
-        </div>
-      </section>
+      <AcceptedPayments />
 
       <section className="py-10 bg-[#E3F2FD] text-center">
         <FadeIn>
