@@ -1,7 +1,6 @@
 import FadeIn from '../components/FadeIn'
 import ceo from '../assets/ceo.jpg'
 import president from '../assets/opt-president.jpg'
-import sarah from '../assets/sarah.jpg'
 
 const team = [
   {
@@ -17,16 +16,6 @@ const team = [
     role: 'President',
     bio: 'Jennifer Holloway joined Clean Queens in November 2025. She began as a top performing Cleaning Specialist. She performed so well in that role — training other cleaners and providing exceptional customer service — that in June 2026 she was promoted to President of the company.',
     reverse: true,
-  },
-  {
-    image: sarah,
-    name: 'Sarah Coleman',
-    role: 'Vice President',
-    bio: [
-      'Sarah Coleman joined Clean Queens in July 2026 as a Cleaning Specialist and quickly distinguished herself as a top-performing member of the team. Her exceptional cleaning skills, combined with her experience in management and marketing, made her stand out from the very beginning.',
-      'In recognition of her outstanding performance, leadership abilities, and versatility, Sarah was promoted to Vice President of Clean Queens in August 2026—just one month after joining the company. Her rapid advancement reflects the impact she made from day one and the confidence Clean Queens has in her leadership.',
-    ],
-    reverse: false,
   },
 ]
 
