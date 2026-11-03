@@ -33,8 +33,9 @@ const benefits = [
 ]
 
 const reviews = [
-  { quote: 'Just had my first cleaning from them and Jasmine did an AMAZING JOB! They were quick, efficient, and detailed. I was very impressed, and the prices are more than reasonable, especially for having a 2,500 sq. ft. home!', name: 'Donna', source: 'Google' },
-  { quote: 'Booked them for a move-out deep clean and they absolutely nailed it. The place looked better than when I moved in. Fast, detailed, and professional.', name: 'Hunter Roberts', source: 'Google' },
+  { quote: 'Jennifer & Sarah did an incredible job on our move out cleaning! They were not only so kind and friendly but their attention to detail was AMAZING! They completed a whole house deep clean and carpet cleaning for us. Highly recommend. 🙌🏽', name: 'Brittni Kelchner', source: 'Google' },
+  { quote: 'Jennifer has been cleaning my house for a couple of months. She does a great job every time, even dusting the window blinds and the ceiling fans. She is prompt and professional. I would definitely recommend Clean Queens to anyone looking for cleaning services.', name: 'Linda Harrell', source: 'Google' },
+  { quote: "Jennifer is the absolute best maid I've ever had. She's quick and thorough. Great personality! Easy to work with", name: 'Tracey Weaver', source: 'Google' },
   { quote: 'They did a great job on my house getting it rental ready. They did a deep clean and the house looks dang near brand new. Thanks again, guys!', name: 'Robert B.', source: 'Yelp' },
   { quote: "Jennifer was amazing! She was very kind and thorough. She made his apartment look like he had just moved in. It smells so much better and is so clean. I can't say enough good things about her and this company. I'll be calling them again.", name: 'Janelle T.', source: 'Yelp' },
   { quote: 'Amazing service done by Guy, the owner, with cleaning and taking care of my home. It was a last-minute appointment and he was able to make it.', name: 'Daranijo T.', source: 'Yelp' },

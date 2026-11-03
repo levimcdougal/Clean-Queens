@@ -4,6 +4,10 @@ import CalEmbed from '../components/CalEmbed'
 
 const faqs = [
   {
+    q: 'What areas do you service?',
+    a: 'Clean Queens proudly serves Huntsville and Walker County, Texas, as well as surrounding communities, including Trinity, Livingston, Madisonville, Conroe, Bryan, and College Station. Our service area also includes Trinity, Polk, San Jacinto, Madison, Montgomery, Grimes, and Brazos counties.',
+  },
+  {
     q: 'Do I need to be home during the cleaning?',
     a: "No, you don't need to be home. Many of our clients provide a key or entry code. We treat every home with the utmost care and respect whether you're there or not.",
   },

@@ -299,7 +299,6 @@
     .home-offer__crown { display: block; }
     .home-review-grid { grid-template-columns: repeat(6, 1fr); }
     .home-review-grid article { grid-column: span 2; }
-    .home-review-grid article:nth-child(4) { grid-column: 2 / span 2; }
     .home-section-heading a { display: block; }
     .quote-shell { width: min(100% - 4rem, 68rem); }
     .quote-layout { grid-template-columns: minmax(0, 1.65fr) minmax(15rem, .75fr); }
