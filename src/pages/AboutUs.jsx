@@ -1,20 +1,20 @@
 import FadeIn from '../components/FadeIn'
 import ceo from '../assets/ceo.jpg'
-import president from '../assets/opt-president.jpg'
+import president from '../assets/IMG_1145.jpg'
 
 const team = [
   {
     image: ceo,
     name: 'Guy Trent',
     role: 'Founder & CEO',
-    bio: "Guy Trent, founder and CEO, devised the idea to form a cleaning business while supervising an inmate cleanup detail crew during his duties at a Texas Prison Unit. During his time supervising the crew, he moved forward, and founded Clean Queens in September 2025.",
+    bio: 'Guy Trent conceived the idea for Clean Queens while supervising an inmate cleanup detail crew as part of his duties at a Texas prison unit. He founded the company in September 2025 and serves as its Founder and CEO. Guy oversees the company’s finances and logistics.',
     reverse: false,
   },
   {
     image: president,
     name: 'Jennifer Holloway',
     role: 'President',
-    bio: 'Jennifer Holloway joined Clean Queens in November 2025. She began as a top performing Cleaning Specialist. She performed so well in that role — training other cleaners and providing exceptional customer service — that in June 2026 she was promoted to President of the company.',
+    bio: 'Jennifer Holloway joined Clean Queens in November 2025 as a Cleaning Specialist. Bringing five years of cleaning experience and ten years of management and leadership experience, she quickly distinguished herself through her high-quality work, exceptional customer service, and support in training other cleaners. In June 2026, she was promoted to President and now leads the company’s day-to-day operations.',
     reverse: true,
   },
 ]

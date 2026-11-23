@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { MapPin, Sparkles, X } from 'lucide-react'
+import { ChevronLeft, ChevronRight, MapPin, Sparkles, X } from 'lucide-react'
 import FadeIn from '../components/FadeIn'
 import before1 from '../assets/b1.jpg'
 import before2 from '../assets/b2.jpg'
@@ -111,24 +111,177 @@ const huntsvilleMoveOutProjects = [
   { before: moveOut35, after: moveOut36 },
 ]
 
-export default function Gallery() {
-  const [selectedPhoto, setSelectedPhoto] = useState(null)
+const addedPhotos = import.meta.glob('../assets/gallery/*.jpg', { eager: true, import: 'default' })
+const photo = (name) => addedPhotos[`../assets/gallery/${name}.jpg`]
+
+const conroeProjects = ['Carpet', 'Closet', 'Vanity', 'Shower', 'Tub', 'Toilet'].map((title) => ({
+  title,
+  before: photo(`conroe-${title.toLowerCase()}-before`),
+  after: photo(`conroe-${title.toLowerCase()}-after`),
+}))
+
+const conroeExtraPhotos = [
+  { caption: 'Bedroom', src: photo('conroe-bedroom-before') },
+  { caption: 'Bathroom', src: photo('conroe-bathroom-before') },
+  { caption: 'Bathroom vanity overview', src: photo('conroe-bathroom-vanity-angle-before') },
+]
+
+const loveladyProjects = [
+  'Toilet', 'Sitting room', 'Living room', 'Primary bedroom', 'Bedroom', 'Dining room',
+  'Entryway', 'Kitchen', 'Shower', 'Bathtub', 'Vanity',
+].map((title, index) => ({
+  title,
+  before: photo(`lovelady-${index + 1}-before`),
+  after: photo(`lovelady-${index + 1}-after`),
+}))
+
+const albums = [
+  { id: 'tomball-tx', location: 'Tomball, TX', title: 'Tomball Home Transformations', projects: tomballProjects },
+  { id: 'groveton-tx', location: 'Groveton, TX', title: 'Groveton Home Transformations', projects: grovetonProjects },
+  { id: 'bryan-college-station-tx', location: 'Bryan/College Station, TX', title: 'Bryan/College Station Home Transformations', buttonLabel: 'View all photos from this area', projects: bryanCollegeStationProjects },
+  { id: 'grapeland-tx', location: 'Grapeland, TX', title: 'Grapeland Deep Clean', projects: grapelandProjects },
+  { id: 'huntsville-tx', location: 'Huntsville, TX', title: 'Huntsville Deep Clean', projects: huntsvilleProjects },
+  { id: 'huntsville-move-out-clean', location: 'Huntsville, TX', title: 'Huntsville Move-Out Clean', projects: huntsvilleMoveOutProjects },
+  { id: 'conroe-tx', location: 'Conroe, TX', title: 'Conroe Home Transformations', projects: conroeProjects, extraPhotos: conroeExtraPhotos },
+  { id: 'lovelady-tx', location: 'Lovelady, TX', title: 'Lovelady Home Transformations', projects: loveladyProjects },
+]
+
+const photoLabels = [
+  { side: 'before', label: 'Before', color: 'bg-[#1E5DB8]' },
+  { side: 'after', label: 'After', color: 'bg-[#287a31]' },
+]
+
+function Photos({ project, title, onSelect }) {
+  return (
+    <div className="grid grid-cols-2">
+      {photoLabels.filter(({ side }) => project[side]).map(({ side, label, color }) => (
+        <button
+          aria-label={`Enlarge ${label.toLowerCase()} photo of ${title}`}
+          className="group relative aspect-[4/5] overflow-hidden bg-gray-100 sm:aspect-[4/3]"
+          key={side}
+          onClick={() => onSelect(side)}
+          type="button"
+        >
+          <img alt={`${label} cleaning photo of ${title}`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" decoding="async" loading="lazy" src={project[side]} />
+          <span className={`absolute left-2 top-2 rounded-full ${color} px-3 py-1 text-xs font-bold uppercase text-white shadow-md`}>{label}</span>
+        </button>
+      ))}
+    </div>
+  )
+}
+
+function AlbumDialog({ album, initialSide, onClose }) {
+  const dialog = useRef(null)
+  const swipeStart = useRef(null)
+  const [photoIndex, setPhotoIndex] = useState(initialSide === 'after' ? 1 : initialSide === 'before' ? 0 : null)
+  const pairedPhotos = album.projects.flatMap((project, index) =>
+    photoLabels.filter(({ side }) => project[side]).map(({ side, label }) => ({
+      src: project[side],
+      caption: `${label} · ${project.title ?? `Transformation ${index + 1}`}`,
+    })),
+  )
+  const photos = [...pairedPhotos, ...(album.extraPhotos ?? [])]
+  const selected = photos[photoIndex]
 
   useEffect(() => {
-    if (!selectedPhoto) return undefined
-
-    const closeOnEscape = (event) => {
-      if (event.key === 'Escape') setSelectedPhoto(null)
-    }
-
+    const previousOverflow = document.body.style.overflow
+    const element = dialog.current
+    element.showModal()
     document.body.style.overflow = 'hidden'
-    window.addEventListener('keydown', closeOnEscape)
-
     return () => {
-      document.body.style.overflow = ''
-      window.removeEventListener('keydown', closeOnEscape)
+      element.close()
+      document.body.style.overflow = previousOverflow
     }
-  }, [selectedPhoto])
+  }, [])
+
+  function movePhoto(step) {
+    setPhotoIndex((index) => (index + step + photos.length) % photos.length)
+  }
+
+  function handleKey(event) {
+    if (!selected) return
+    if (event.key === 'ArrowLeft') movePhoto(-1)
+    if (event.key === 'ArrowRight') movePhoto(1)
+  }
+
+  return (
+    <dialog
+      aria-labelledby="gallery-album-title"
+      className="m-auto max-h-[92dvh] w-[min(96vw,64rem)] max-w-none overflow-y-auto rounded-2xl bg-white text-gray-900 shadow-xl backdrop:bg-black/80"
+      onCancel={(event) => { event.preventDefault(); onClose() }}
+      onClick={(event) => { if (event.target === event.currentTarget) onClose() }}
+      onKeyDown={handleKey}
+      ref={dialog}
+    >
+      <div className="p-4 sm:p-6">
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <h2 className="text-xl font-bold text-[#1E5DB8]" id="gallery-album-title">{album.title}</h2>
+          <button aria-label="Close album" className="rounded-full bg-gray-100 p-2 hover:bg-gray-200" onClick={onClose} type="button"><X size={24} /></button>
+        </div>
+        {selected ? (
+          <div>
+            <button className="mb-3 font-semibold text-[#1E5DB8] underline" onClick={() => setPhotoIndex(null)} type="button">Back to album</button>
+            <img
+              alt={selected.caption}
+              className="mx-auto max-h-[62dvh] w-full touch-pan-y rounded-xl object-contain"
+              draggable={false}
+              onTouchStart={(event) => { swipeStart.current = event.touches[0] }}
+              onTouchCancel={() => { swipeStart.current = null }}
+              onTouchEnd={(event) => {
+                const start = swipeStart.current
+                swipeStart.current = null
+                if (start === null) return
+                const end = event.changedTouches[0]
+                const horizontal = end.clientX - start.clientX
+                const vertical = end.clientY - start.clientY
+                if (Math.abs(horizontal) > Math.max(45, Math.abs(vertical))) movePhoto(horizontal < 0 ? 1 : -1)
+              }}
+              src={selected.src}
+            />
+            <div className="mt-3 flex items-center justify-between gap-2 text-center">
+              <button aria-label="Previous photo" className="rounded-full bg-gray-100 p-2 hover:bg-gray-200" onClick={() => movePhoto(-1)} type="button"><ChevronLeft /></button>
+              <p aria-live="polite">{selected.caption} · {photoIndex + 1} of {photos.length}</p>
+              <button aria-label="Next photo" className="rounded-full bg-gray-100 p-2 hover:bg-gray-200" onClick={() => movePhoto(1)} type="button"><ChevronRight /></button>
+            </div>
+          </div>
+        ) : (
+          <div className="grid gap-5 sm:grid-cols-2">
+            {album.projects.map((project, index) => {
+              const title = project.title ?? `Transformation ${index + 1}`
+              const firstPhoto = photos.findIndex(({ src }) => src === project.before)
+              return (
+                <article className="overflow-hidden rounded-xl border border-gray-200" key={project.before}>
+                  <Photos project={project} title={title} onSelect={(side) => setPhotoIndex(firstPhoto + (side === 'after' ? 1 : 0))} />
+                  <h3 className="px-4 py-3 font-semibold">{title}</h3>
+                </article>
+              )
+            })}
+            {album.extraPhotos && (
+              <article className="mx-auto w-full max-w-3xl rounded-xl border border-gray-200 bg-white p-2 sm:col-span-2 sm:p-3" aria-label="Additional Conroe photos">
+                <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                  {album.extraPhotos.map(({ src, caption }, index) => (
+                    <button
+                      aria-label={`Enlarge photo of ${caption}`}
+                      className="aspect-[3/2] overflow-hidden rounded-lg bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2"
+                      key={src}
+                      onClick={() => setPhotoIndex(pairedPhotos.length + index)}
+                      type="button"
+                    >
+                      <img alt={caption} className="h-full w-full object-cover object-bottom" decoding="async" loading="lazy" src={src} />
+                    </button>
+                  ))}
+                </div>
+              </article>
+            )}
+          </div>
+        )}
+      </div>
+    </dialog>
+  )
+}
+
+export default function Gallery() {
+  const [activeAlbum, setActiveAlbum] = useState(null)
 
   return (
     <div className="site-page gallery-page w-full bg-[#f8fbff]">
@@ -148,389 +301,40 @@ export default function Gallery() {
         </FadeIn>
       </section>
 
-      <section className="py-14 sm:py-16" id="tomball-tx">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FadeIn>
-            <div className="mb-10 flex flex-col items-center text-center">
-              <span className="inline-flex items-center gap-2 rounded-full bg-[#5BC85A]/15 px-4 py-2 font-semibold text-[#287a31]">
-                <MapPin size={18} /> Tomball, TX
-              </span>
-              <h2 className="mt-4 text-3xl font-bold text-[#1E5DB8] sm:text-4xl">Tomball Home Transformations</h2>
-              <p className="mt-3 max-w-2xl text-gray-600">
-                Browse five real before-and-after transformations from a home we cleaned in Tomball, Texas. Select any photo to see it larger.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid gap-8 lg:grid-cols-2">
-            {tomballProjects.map((project, index) => (
-              <FadeIn key={project.before} delay={(index % 2) * 100}>
-                <article className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/70">
-                  <div className="grid grid-cols-2">
-                    {[
-                      { src: project.before, label: 'Before', color: 'bg-[#1E5DB8]' },
-                      { src: project.after, label: 'After', color: 'bg-[#5BC85A]' },
-                    ].map(({ src, label, color }) => (
-                      <button
-                        key={label}
-                        aria-label={`Enlarge ${label.toLowerCase()} photo ${index + 1}`}
-                        className="group relative aspect-[4/5] overflow-hidden bg-gray-100 sm:aspect-[4/3]"
-                        onClick={() => setSelectedPhoto({ src, label, number: index + 1, location: 'Tomball, TX' })}
-                        type="button"
-                      >
-                        <img
-                          alt={`${label} cleaning photo ${index + 1} from a Tomball, Texas home`}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          decoding="async"
-                          loading="lazy"
-                          src={src}
-                        />
-                        <span className={`absolute left-3 top-3 rounded-full ${color} px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-md sm:text-sm`}>
-                          {label}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between px-5 py-4">
-                    <div>
-                      <p className="font-bold text-gray-900">Transformation {index + 1}</p>
-                      <p className="text-sm text-gray-500">Tomball, Texas</p>
-                    </div>
-                    <Sparkles className="text-[#D946A6]" size={22} />
-                  </div>
-                </article>
-              </FadeIn>
-            ))}
-          </div>
-
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-2">
+          {albums.map((album) => (
+            <FadeIn key={album.id}>
+              <article className="scroll-mt-28 overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/70" id={album.id}>
+                <Photos project={album.projects[0]} title={album.title} onSelect={(side) => setActiveAlbum({ album, side })} />
+                <div className="px-5 py-5">
+                  <p className="flex items-center gap-2 text-sm font-semibold text-[#287a31]"><MapPin size={16} /> {album.location}</p>
+                  <h2 className="my-2 text-2xl font-bold text-[#1E5DB8]">{album.title}</h2>
+                  <button
+                    aria-label={`${album.buttonLabel ?? 'View all photos from this home'}: ${album.title}`}
+                    className="rounded-full bg-[#1E5DB8] px-5 py-2.5 font-semibold text-white hover:bg-[#17498f]"
+                    onClick={() => setActiveAlbum({ album })}
+                    type="button"
+                  >
+                    {album.buttonLabel ?? 'View all photos from this home'}
+                  </button>
+                </div>
+              </article>
+            </FadeIn>
+          ))}
         </div>
-      </section>
-
-      <section className="bg-white py-14 sm:py-16" id="groveton-tx">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FadeIn>
-            <div className="mb-10 flex flex-col items-center text-center">
-              <span className="inline-flex items-center gap-2 rounded-full bg-[#D946A6]/10 px-4 py-2 font-semibold text-[#b42f87]">
-                <MapPin size={18} /> Groveton, TX
-              </span>
-              <h2 className="mt-4 text-3xl font-bold text-[#1E5DB8] sm:text-4xl">Groveton Home Transformations</h2>
-              <p className="mt-3 max-w-2xl text-gray-600">
-                Browse three real before-and-after transformations from a home we cleaned in Groveton, Texas. Select any photo to see it larger.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid gap-8 lg:grid-cols-2">
-            {grovetonProjects.map((project, index) => (
-              <FadeIn key={project.before} delay={(index % 2) * 100}>
-                <article className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/70">
-                  <div className="grid grid-cols-2">
-                    {[
-                      { src: project.before, label: 'Before', color: 'bg-[#1E5DB8]' },
-                      { src: project.after, label: 'After', color: 'bg-[#5BC85A]' },
-                    ].map(({ src, label, color }) => (
-                      <button
-                        key={label}
-                        aria-label={`Enlarge ${label.toLowerCase()} Groveton photo ${index + 1}`}
-                        className="group relative aspect-[4/5] overflow-hidden bg-gray-100 sm:aspect-[4/3]"
-                        onClick={() => setSelectedPhoto({ src, label, number: index + 1, location: 'Groveton, TX' })}
-                        type="button"
-                      >
-                        <img
-                          alt={`${label} cleaning photo ${index + 1} from a Groveton, Texas home`}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          decoding="async"
-                          loading="lazy"
-                          src={src}
-                        />
-                        <span className={`absolute left-3 top-3 rounded-full ${color} px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-md sm:text-sm`}>
-                          {label}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between px-5 py-4">
-                    <div>
-                      <p className="font-bold text-gray-900">Transformation {index + 1}</p>
-                      <p className="text-sm text-gray-500">Groveton, Texas</p>
-                    </div>
-                    <Sparkles className="text-[#D946A6]" size={22} />
-                  </div>
-                </article>
-              </FadeIn>
-            ))}
+        <FadeIn>
+          <div className="mt-14 rounded-3xl bg-gradient-to-r from-[#D946A6] to-[#bd358d] px-6 py-10 text-center text-white shadow-xl sm:px-10">
+            <h2 className="text-2xl font-bold sm:text-3xl">Ready for your own transformation?</h2>
+            <p className="mx-auto mt-3 max-w-xl text-white/90">Let our team give your home the royal treatment.</p>
+            <Link className="mt-6 inline-block rounded-full bg-white px-7 py-3 font-bold text-[#1E5DB8] transition-transform hover:scale-105" to="/booking">
+              Book Your Cleaning
+            </Link>
           </div>
+        </FadeIn>
+      </div>
 
-        </div>
-      </section>
-
-      <section className="py-14 sm:py-16" id="bryan-college-station-tx">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FadeIn>
-            <div className="mb-10 flex flex-col items-center text-center">
-              <span className="inline-flex items-center gap-2 rounded-full bg-[#5BC85A]/15 px-4 py-2 font-semibold text-[#287a31]">
-                <MapPin size={18} /> Bryan/College Station, TX
-              </span>
-              <h2 className="mt-4 text-3xl font-bold text-[#1E5DB8] sm:text-4xl">Bryan/College Station Home Transformations</h2>
-              <p className="mt-3 max-w-2xl text-gray-600">
-                Browse six real before-and-after transformations from homes we cleaned in Bryan/College Station, Texas. Select any photo to see it larger.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid gap-8 lg:grid-cols-2">
-            {bryanCollegeStationProjects.map((project, index) => (
-              <FadeIn key={project.before} delay={(index % 2) * 100}>
-                <article className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/70">
-                  <div className="grid grid-cols-2">
-                    {[
-                      { src: project.before, label: 'Before', color: 'bg-[#1E5DB8]' },
-                      { src: project.after, label: 'After', color: 'bg-[#5BC85A]' },
-                    ].map(({ src, label, color }) => (
-                      <button
-                        key={label}
-                        aria-label={`Enlarge ${label.toLowerCase()} Bryan/College Station photo ${index + 1}`}
-                        className="group relative aspect-[4/5] overflow-hidden bg-gray-100 sm:aspect-[4/3]"
-                        onClick={() => setSelectedPhoto({ src, label, number: index + 1, location: 'Bryan/College Station, TX' })}
-                        type="button"
-                      >
-                        <img
-                          alt={`${label} cleaning photo ${index + 1} from a Bryan/College Station, Texas home`}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          decoding="async"
-                          loading="lazy"
-                          src={src}
-                        />
-                        <span className={`absolute left-3 top-3 rounded-full ${color} px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-md sm:text-sm`}>
-                          {label}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between px-5 py-4">
-                    <div>
-                      <p className="font-bold text-gray-900">Transformation {index + 1}</p>
-                      <p className="text-sm text-gray-500">Bryan/College Station, Texas</p>
-                    </div>
-                    <Sparkles className="text-[#D946A6]" size={22} />
-                  </div>
-                </article>
-              </FadeIn>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      <section className="bg-white py-14 sm:py-16" id="grapeland-tx">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FadeIn>
-            <div className="mb-10 flex flex-col items-center text-center">
-              <span className="inline-flex items-center gap-2 rounded-full bg-[#D946A6]/10 px-4 py-2 font-semibold text-[#b42f87]">
-                <MapPin size={18} /> Grapeland, TX
-              </span>
-              <h2 className="mt-4 text-3xl font-bold text-[#1E5DB8] sm:text-4xl">Grapeland Deep Clean</h2>
-              <p className="mt-3 max-w-2xl text-gray-600">
-                See the before-and-after results from a detailed deep clean in Grapeland, Texas. Select any photo to see it larger.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid gap-8 lg:grid-cols-2">
-            {grapelandProjects.map((project, index) => (
-              <FadeIn key={project.before} delay={(index % 2) * 100}>
-                <article className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/70">
-                  <div className="grid grid-cols-2">
-                    {[
-                      { src: project.before, label: 'Before', color: 'bg-[#1E5DB8]' },
-                      { src: project.after, label: 'After', color: 'bg-[#5BC85A]' },
-                    ].map(({ src, label, color }) => (
-                      <button
-                        key={label}
-                        aria-label={`Enlarge ${label.toLowerCase()} Grapeland photo ${index + 1}`}
-                        className="group relative aspect-[4/5] overflow-hidden bg-gray-100 sm:aspect-[4/3]"
-                        onClick={() => setSelectedPhoto({ src, label, number: index + 1, location: 'Grapeland, TX' })}
-                        type="button"
-                      >
-                        <img
-                          alt={`${label} deep cleaning photo ${index + 1} from a Grapeland, Texas home`}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          decoding="async"
-                          loading="lazy"
-                          src={src}
-                        />
-                        <span className={`absolute left-3 top-3 rounded-full ${color} px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-md sm:text-sm`}>
-                          {label}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between px-5 py-4">
-                    <div>
-                      <p className="font-bold text-gray-900">Deep Clean Transformation {index + 1}</p>
-                      <p className="text-sm text-gray-500">Grapeland, Texas</p>
-                    </div>
-                    <Sparkles className="text-[#D946A6]" size={22} />
-                  </div>
-                </article>
-              </FadeIn>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      <section className="py-14 sm:py-16" id="huntsville-tx">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FadeIn>
-            <div className="mb-10 flex flex-col items-center text-center">
-              <span className="inline-flex items-center gap-2 rounded-full bg-[#5BC85A]/15 px-4 py-2 font-semibold text-[#287a31]">
-                <MapPin size={18} /> Huntsville, TX
-              </span>
-              <h2 className="mt-4 text-3xl font-bold text-[#1E5DB8] sm:text-4xl">Huntsville Deep Clean</h2>
-              <p className="mt-3 max-w-2xl text-gray-600">
-                See four before-and-after transformations from a detailed deep clean in Huntsville, Texas. Select any photo to see it larger.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid gap-8 lg:grid-cols-2">
-            {huntsvilleProjects.map((project, index) => (
-              <FadeIn key={project.before} delay={(index % 2) * 100}>
-                <article className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/70">
-                  <div className="grid grid-cols-2">
-                    {[
-                      { src: project.before, label: 'Before', color: 'bg-[#1E5DB8]' },
-                      { src: project.after, label: 'After', color: 'bg-[#5BC85A]' },
-                    ].map(({ src, label, color }) => (
-                      <button
-                        key={label}
-                        aria-label={`Enlarge ${label.toLowerCase()} Huntsville photo ${index + 1}`}
-                        className="group relative aspect-[4/5] overflow-hidden bg-gray-100 sm:aspect-[4/3]"
-                        onClick={() => setSelectedPhoto({ src, label, number: index + 1, location: 'Huntsville, TX' })}
-                        type="button"
-                      >
-                        <img
-                          alt={`${label} deep cleaning photo ${index + 1} from a Huntsville, Texas home`}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          decoding="async"
-                          loading="lazy"
-                          src={src}
-                        />
-                        <span className={`absolute left-3 top-3 rounded-full ${color} px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-md sm:text-sm`}>
-                          {label}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between px-5 py-4">
-                    <div>
-                      <p className="font-bold text-gray-900">Deep Clean Transformation {index + 1}</p>
-                      <p className="text-sm text-gray-500">Huntsville, Texas</p>
-                    </div>
-                    <Sparkles className="text-[#D946A6]" size={22} />
-                  </div>
-                </article>
-              </FadeIn>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      <section className="bg-white py-14 sm:py-16" id="huntsville-move-out-clean">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FadeIn>
-            <div className="mb-10 flex flex-col items-center text-center">
-              <span className="inline-flex items-center gap-2 rounded-full bg-[#D946A6]/10 px-4 py-2 font-semibold text-[#b42f87]">
-                <MapPin size={18} /> Huntsville, TX
-              </span>
-              <h2 className="mt-4 text-3xl font-bold text-[#1E5DB8] sm:text-4xl">Huntsville Move-Out Clean</h2>
-              <p className="mt-3 max-w-2xl text-gray-600">
-                See seven before-and-after transformations from a detailed move-out clean in Huntsville, Texas. Select any photo to see it larger.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid gap-8 lg:grid-cols-2">
-            {huntsvilleMoveOutProjects.map((project, index) => (
-              <FadeIn key={project.before} delay={(index % 2) * 100}>
-                <article className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/70">
-                  <div className="grid grid-cols-2">
-                    {[
-                      { src: project.before, label: 'Before', color: 'bg-[#1E5DB8]' },
-                      { src: project.after, label: 'After', color: 'bg-[#5BC85A]' },
-                    ].map(({ src, label, color }) => (
-                      <button
-                        key={label}
-                        aria-label={`Enlarge ${label.toLowerCase()} Huntsville move-out photo ${index + 1}`}
-                        className="group relative aspect-[4/5] overflow-hidden bg-gray-100 sm:aspect-[4/3]"
-                        onClick={() => setSelectedPhoto({ src, label, number: index + 1, location: 'Huntsville, TX' })}
-                        type="button"
-                      >
-                        <img
-                          alt={`${label} move-out cleaning photo ${index + 1} from a Huntsville, Texas home`}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          decoding="async"
-                          loading="lazy"
-                          src={src}
-                        />
-                        <span className={`absolute left-3 top-3 rounded-full ${color} px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-md sm:text-sm`}>
-                          {label}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between px-5 py-4">
-                    <div>
-                      <p className="font-bold text-gray-900">Move-Out Transformation {index + 1}</p>
-                      <p className="text-sm text-gray-500">Huntsville, Texas</p>
-                    </div>
-                    <Sparkles className="text-[#D946A6]" size={22} />
-                  </div>
-                </article>
-              </FadeIn>
-            ))}
-          </div>
-
-          <FadeIn>
-            <div className="mt-14 rounded-3xl bg-gradient-to-r from-[#D946A6] to-[#bd358d] px-6 py-10 text-center text-white shadow-xl sm:px-10">
-              <h2 className="text-2xl font-bold sm:text-3xl">Ready for your own transformation?</h2>
-              <p className="mx-auto mt-3 max-w-xl text-white/90">Let our team give your home the royal treatment.</p>
-              <Link className="mt-6 inline-block rounded-full bg-white px-7 py-3 font-bold text-[#1E5DB8] transition-transform hover:scale-105" to="/booking">
-                Book Your Cleaning
-              </Link>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {selectedPhoto && (
-        <div
-          aria-label="Enlarged gallery photo"
-          aria-modal="true"
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4"
-          onClick={() => setSelectedPhoto(null)}
-          role="dialog"
-        >
-          <button
-            aria-label="Close enlarged photo"
-            className="absolute right-4 top-4 rounded-full bg-white/15 p-2 text-white transition-colors hover:bg-white/25 sm:right-8 sm:top-8"
-            onClick={() => setSelectedPhoto(null)}
-            type="button"
-          >
-            <X size={28} />
-          </button>
-          <div className="flex max-h-[90vh] max-w-5xl flex-col items-center" onClick={(event) => event.stopPropagation()}>
-            <img
-              alt={`${selectedPhoto.label} cleaning photo ${selectedPhoto.number} from ${selectedPhoto.location}`}
-              className="max-h-[82vh] max-w-full rounded-xl object-contain shadow-2xl"
-              src={selectedPhoto.src}
-            />
-            <p className="mt-3 font-semibold text-white">{selectedPhoto.label} · {selectedPhoto.location}</p>
-          </div>
-        </div>
-      )}
+      {activeAlbum && <AlbumDialog album={activeAlbum.album} initialSide={activeAlbum.side} onClose={() => setActiveAlbum(null)} />}
     </div>
   )
 }
