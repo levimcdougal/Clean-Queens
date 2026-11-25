@@ -111,7 +111,7 @@ const huntsvilleMoveOutProjects = [
   { before: moveOut35, after: moveOut36 },
 ]
 
-const addedPhotos = import.meta.glob('../assets/gallery/*.jpg', { eager: true, import: 'default' })
+const addedPhotos = import.meta.glob('../assets/gallery/conroe-*.jpg', { eager: true, import: 'default' })
 const photo = (name) => addedPhotos[`../assets/gallery/${name}.jpg`]
 
 const conroeProjects = ['Carpet', 'Closet', 'Vanity', 'Shower', 'Tub', 'Toilet'].map((title) => ({
@@ -126,15 +126,6 @@ const conroeExtraPhotos = [
   { caption: 'Bathroom vanity overview', src: photo('conroe-bathroom-vanity-angle-before') },
 ]
 
-const loveladyProjects = [
-  'Toilet', 'Sitting room', 'Living room', 'Primary bedroom', 'Bedroom', 'Dining room',
-  'Entryway', 'Kitchen', 'Shower', 'Bathtub', 'Vanity',
-].map((title, index) => ({
-  title,
-  before: photo(`lovelady-${index + 1}-before`),
-  after: photo(`lovelady-${index + 1}-after`),
-}))
-
 const albums = [
   { id: 'tomball-tx', location: 'Tomball, TX', title: 'Tomball Home Transformations', projects: tomballProjects },
   { id: 'groveton-tx', location: 'Groveton, TX', title: 'Groveton Home Transformations', projects: grovetonProjects },
@@ -143,7 +134,6 @@ const albums = [
   { id: 'huntsville-tx', location: 'Huntsville, TX', title: 'Huntsville Deep Clean', projects: huntsvilleProjects },
   { id: 'huntsville-move-out-clean', location: 'Huntsville, TX', title: 'Huntsville Move-Out Clean', projects: huntsvilleMoveOutProjects },
   { id: 'conroe-tx', location: 'Conroe, TX', title: 'Conroe Home Transformations', projects: conroeProjects, extraPhotos: conroeExtraPhotos },
-  { id: 'lovelady-tx', location: 'Lovelady, TX', title: 'Lovelady Home Transformations', projects: loveladyProjects },
 ]
 
 const photoLabels = [

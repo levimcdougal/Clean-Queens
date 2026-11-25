@@ -35,6 +35,15 @@ const faqs = [
     q: 'Are you insured and bonded?',
     a: 'Yes, we are insured and bonded to protect our company from liabilities and risk, as well as protect our clients from any malfeasance.',
   },
+  {
+    q: 'Why don’t you currently accept cash or checks?',
+    a: (
+      <>
+        <p className="mb-3">For now, Clean Queens accepts electronic payments because they’re easy to track and help ensure payments are received securely.</p>
+        <p>We understand that some clients prefer to pay by cash or check. We’re working on a secure system to accommodate those preferences and help protect payments from loss or theft while they’re being delivered to us. We’ll share an update when that option is available.</p>
+      </>
+    ),
+  },
 ]
 
 // Starting estimate assumptions. Keep these values together so the owner can
